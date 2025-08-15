@@ -1,0 +1,31 @@
+0
+Fecha de la transacción (YYYY-MM-DD)
+Fecha y hora exacta de la transacción con zona horaria
+Método de pago (efectivo o tarjeta)
+Identificador anonimizado de la tarjeta
+Monto pagado en la transacción
+Nombre del producto de café vendido
+Año de la transacción (entero)
+Mes de la transacción (1-12)
+Día del mes (1-31)
+Hora del día (0-23)
+"Día de la semana (0=lunes, 6=domingo)"
+Número de semana del año
+Transformación seno del mes (para estacionalidad)
+Transformación coseno del mes (para estacionalidad)
+Transformación seno de la hora (para estacionalidad horaria)
+Transformación coseno de la hora (para estacionalidad horaria)
+Fecha local sin información horaria
+Fecha y hora local redondeada a la hora
+Temperatura del aire a 2 m sobre el suelo (°C)
+Sensación térmica calculada (°C)
+Punto de rocío a 2 m sobre el suelo (°C)
+Humedad relativa a 2 m (%)
+Presión atmosférica a nivel del mar (hPa)
+Precipitación total (mm)
+Precipitación líquida (lluvia) (mm)
+Cobertura de nubes (%)
+Velocidad del viento a 10 m (km/h o m/s según API)
+Rachas máximas de viento a 10 m (km/h o m/s según API)
+Indicador de si la fecha es festiva (True/False)
+Nombre del festivo (si aplica)
