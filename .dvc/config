@@ -1,6 +1,8 @@
 [core]
-    remote = localstore_d
+    remote = sharedstore
 [cache]
     dir = D:\dvc-cache
 ['remote "localstore_d"']
     url = D:\Julian\dvcstore
+['remote "sharedstore"']
+    url = G:\Mi unidad\Julian\dvc-coffee-store
