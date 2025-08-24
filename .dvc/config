@@ -1,2 +1,6 @@
-['remote "localstore"']
+[core]
+    remote = localstore_d
+['remote "localstore_c"']
     url = C:\dvcstore
+['remote "localstore_d"']
+    url = D:\Julian\dvcstore
