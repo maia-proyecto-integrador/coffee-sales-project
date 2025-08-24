@@ -1,0 +1,26 @@
+# Entornos virtuales Python
+venv/
+.env
+.venv/
+
+# Archivos de modelos de IA
+*.pkl
+*.h5
+*.model
+*.weights
+
+# Datos y configuraciones
+data/
+models/
+config/credentials.yml
+
+# Jupyter Notebooks temporales
+.ipynb_checkpoints/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Logs y resultados
+logs/
+*.log
