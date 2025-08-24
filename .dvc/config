@@ -5,3 +5,4 @@
 ['remote "gdrive-remote"']
     url = gdrive://1zWlv5LL3WzaTwOMNMjUAsKdkbR7frlvV
     gdrive_service_account_json_file_path = secrets/dvc-coffee-sales-03d2f1d5dfe5.json
+    gdrive_use_service_account = true
