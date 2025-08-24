@@ -1,0 +1,10 @@
+# Ignorar datos crudos y temporales
+data/raw/
+data/interim/
+data/external/
+
+# Ignorar cachés y temporales
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
