@@ -1,0 +1,10 @@
+# Jupyter Notebooks temporales
+.ipynb_checkpoints/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Logs y resultados
+logs/
+*.log
