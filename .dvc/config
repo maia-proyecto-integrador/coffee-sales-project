@@ -1,0 +1,12 @@
+[core]
+    remote = sharedstore
+[cache]
+    dir = D:\dvc-cache
+['remote "localstore_d"']
+    url = D:\Julian\dvcstore
+['remote "sharedstore"']
+    url = G:\Mi unidad\Julian\dvc-coffee-store
+['remote "dagshub"']
+    url = s3://coffee-sales-project
+    endpointurl = https://dagshub.com/api/v1/repo-buckets/s3/juliancujabantevillamil
+    region = us-east-1
