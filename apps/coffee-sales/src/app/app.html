@@ -1,0 +1,272 @@
+<div class="coffee-dashboard">
+  <div class="header">
+    <h1>COFFEE MACHINE AI ASSISTANT</h1>
+  </div>
+
+  <div class="analysis-container">
+    <h2 class="section-title">Análisis de patrones de compra</h2>
+    
+    <div class="controls-container">
+    <h2 class="section-title">Filtros</h2>
+    <div class="controls">
+      <div class="dropdown">
+        <label for="coffee-type-chart">Tipo de bebida</label>
+        <select id="coffee-type-chart" [(ngModel)]="selectedCoffeeType" (change)="onCoffeeTypeChange()">
+          <option value="default">All</option>
+          <option value="americano">Americano</option>
+          <option value="americano-milk">Americano with Milk</option>
+          <option value="cappuccino">Cappuccino</option>
+          <option value="cocoa">Cocoa</option>
+          <option value="cortado">Cortado</option>
+          <option value="espresso">Espresso</option>
+          <option value="hot-chocolate">Hot Chocolate</option>
+          <option value="latte">Latte</option>
+        </select>
+      </div>
+
+      <div class="dropdown">
+        <label for="date-range-chart">Método de pago</label>
+        <select id="date-range-chart">
+          <option value="default">All</option>
+          <option value="card">card</option>
+          <option value="cash">cash</option>
+        </select>
+      </div>
+      
+      <div class="dropdown">
+        <label for="date-range-chart">Período</label>
+        <select id="date-range-chart" [(ngModel)]="selectedDateRange" (change)="onDateRangeChange()">
+          <option value="apr1-apr21">Apr 1, 2024 - Apr 21, 2024</option>
+          <option value="mar1-mar31">Mar 1, 2024 - Mar 31, 2024</option>
+          <option value="feb1-feb29">Feb 1, 2024 - Feb 29, 2024</option>
+        </select>
+      </div>
+
+      <div class="dropdown">
+        <label for="holiday-chart">Festivo</label>
+        <select id="holiday-chart">
+          <option value="default">All</option>
+          <option value="si">Si</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="metrics-cards">
+    <div class="metric-card">
+      <div class="metric-label">REVENUE</div>
+      <div class="metric-value">{{ totalSales | number }}</div>
+    </div>
+
+    <div class="metric-card change-card">
+      <div class="metric-label">% DE CAMBIO RESPECTO AL PERÍODO ANTERIOR</div>
+      <div class="metric-value positive">+{{ percentChange }}%</div>
+    </div>
+    
+    <div class="metric-card">
+      <div class="metric-label">PRODUCTO MÁS VENDIDO</div>
+      <div class="metric-value">Latte</div>
+    </div>
+  </div>
+
+  <div class="chart-section">
+    <div class="chart-container">
+      <div class="chart-legend">
+        <span class="legend-item">
+          <span class="legend-color historical"></span>
+          Histórico
+        </span>
+      </div>
+      <canvas #chartCanvas></canvas>
+    </div>
+  </div>
+  
+  </div>
+
+  <div class="forecast-container">
+    <h2 class="section-title">Pronóstico de ventas</h2>
+    
+    <div class="controls-container">
+      <h2 class="section-title">Filtros</h2>
+      <div class="controls">
+        <div class="dropdown">
+          <label for="date-range-forecast">Horizonte de tiempo</label>
+          <select id="date-range-forecast" [(ngModel)]="selectedDateRangeForecast" (change)="onDateRangeForecastChange()">
+            <option value="apr1-apr21">1 Día</option>
+            <option value="mar1-mar31">1 Semana</option>
+            <option value="feb1-feb29">1 Mes</option>
+            <option value="feb1-feb29">1 Año</option>
+          </select>
+        </div>
+
+        <div class="dropdown">
+          <label for="coffee-type-forecast">Tipo de bebida</label>
+          <select id="coffee-type-forecast" [(ngModel)]="selectedCoffeeTypeForecast" (change)="onCoffeeTypeForecastChange()">
+            <option value="default">All</option>
+            <option value="americano">Americano</option>
+            <option value="americano-milk">Americano with Milk</option>
+            <option value="cappuccino">Cappuccino</option>
+            <option value="cocoa">Cocoa</option>
+            <option value="cortado">Cortado</option>
+            <option value="espresso">Espresso</option>
+            <option value="hot-chocolate">Hot Chocolate</option>
+            <option value="latte">Latte</option>
+          </select>
+        </div>
+
+        <div class="dropdown">
+          <label for="payment-method-forecast">Método de pago</label>
+          <select id="payment-method-forecast">
+            <option value="default">All</option>
+            <option value="card">card</option>
+            <option value="cash">cash</option>
+          </select>
+        </div>
+
+        <div class="dropdown">
+          <label for="holiday-forecast">Festivo</label>
+          <select id="holiday-forecast">
+            <option value="default">All</option>
+            <option value="si">Si</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="metrics-cards">
+      <div class="metric-card">
+        <div class="metric-label">PRONÓSTICO TOTAL</div>
+        <div class="metric-value">{{ forecastTotalSales | number }}</div>
+      </div>
+      
+      <div class="metric-card change-card">
+        <div class="metric-label">% INCREMENTO ESPERADO</div>
+        <div class="metric-value positive">+{{ forecastPercentChange }}%</div>
+      </div>
+      
+      <div class="metric-card">
+        <div class="metric-label">PRODUCTO MÁS VENDIDO</div>
+        <div class="metric-value">Cappuccino</div>
+      </div>
+    </div>
+
+    <div class="chart-section">
+      <div class="chart-container">
+        <div class="chart-legend">
+          <span class="legend-item">
+            <span class="legend-color forecast"></span>
+            Pronóstico
+          </span>
+        </div>
+        <canvas #forecastChartCanvas></canvas>
+      </div>
+    </div>
+
+    <div class="restock-section">
+      <h3 class="restock-title">Recomendaciones de Reposición</h3>
+      <div class="restock-cards">
+        <div class="restock-card urgent">
+          <div class="restock-header">
+            <div class="product-name">Café Espresso</div>
+            <div class="urgency-badge urgent">Urgente</div>
+          </div>
+          <div class="restock-info">
+            <div class="restock-item">
+              <span class="label">Próxima reposición:</span>
+              <span class="value">{{ nextRestockEspresso }}</span>
+            </div>
+            <div class="restock-item">
+              <span class="label">Unidades:</span>
+              <span class="value">{{ restockQuantityEspresso }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="restock-card medium">
+          <div class="restock-header">
+            <div class="product-name">Leche</div>
+            <div class="urgency-badge medium">Medio</div>
+          </div>
+          <div class="restock-info">
+            <div class="restock-item">
+              <span class="label">Próxima reposición:</span>
+              <span class="value">{{ nextRestockMilk }}</span>
+            </div>
+            <div class="restock-item">
+              <span class="label">Unidades:</span>
+              <span class="value">{{ restockQuantityMilk }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="restock-card low">
+          <div class="restock-header">
+            <div class="product-name">Cacao en Polvo</div>
+            <div class="urgency-badge low">Bajo</div>
+          </div>
+          <div class="restock-info">
+            <div class="restock-item">
+              <span class="label">Próxima reposición:</span>
+              <span class="value">{{ nextRestockCocoa }}</span>
+            </div>
+            <div class="restock-item">
+              <span class="label">Unidades:</span>
+              <span class="value">{{ restockQuantityCocoa }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="restock-card low">
+          <div class="restock-header">
+            <div class="product-name">Azúcar</div>
+            <div class="urgency-badge low">Bajo</div>
+          </div>
+          <div class="restock-info">
+            <div class="restock-item">
+              <span class="label">Próxima reposición:</span>
+              <span class="value">{{ nextRestockSugar }}</span>
+            </div>
+            <div class="restock-item">
+              <span class="label">Unidades:</span>
+              <span class="value">{{ restockQuantitySugar }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="validation-section">
+      <h3 class="validation-title">Validación de Pronósticos</h3>
+      <div class="validation-content">
+        <div class="accuracy-metrics">
+          <div class="accuracy-card">
+            <div class="accuracy-label">Precisión General</div>
+            <div class="accuracy-value">{{ forecastAccuracy }}%</div>
+          </div>
+          <div class="accuracy-card">
+            <div class="accuracy-label">Confiabilidad</div>
+            <div class="accuracy-value reliability">{{ reliabilityScore }}</div>
+          </div>
+        </div>
+        
+        <div class="comparison-chart-section">
+          <div class="chart-container">
+            <div class="chart-legend">
+              <span class="legend-item">
+                <span class="legend-color actual"></span>
+                Ventas Reales
+              </span>
+              <span class="legend-item">
+                <span class="legend-color predicted"></span>
+                Pronóstico Anterior
+              </span>
+            </div>
+            <canvas #validationChartCanvas></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
