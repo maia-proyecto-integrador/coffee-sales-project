@@ -8,3 +8,6 @@ Thumbs.db
 # Logs y resultados
 logs/
 *.log
+
+# Archivos de IDE
+.editorconfig

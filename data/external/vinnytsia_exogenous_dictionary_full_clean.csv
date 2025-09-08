@@ -1,0 +1,182 @@
+column,description,type,unit,example
+date,Fecha (día),date,YYYY-MM-DD,2024-07-15
+year,Año calendario,int,N/A,2024
+quarter,Trimestre calendario (1-4),int,N/A,3
+month_num,Mes (1-12),int,N/A,7
+day,Día del mes (1-31),int,N/A,15
+dow,Día de semana (0=Lunes … 6=Domingo),int,N/A,0
+weekofyear_iso,Semana ISO (1-53),int,N/A,29
+season,Estación (métrica: DJF/MAM/JJA/SON),category,N/A,summer
+is_weekend,Indicador fin de semana,bool,N/A,False
+is_dst,Horario de verano (solo 2024 según doc),bool,N/A,True
+is_holiday,Indicador de día festivo (según lista del doc),bool,N/A,True
+holiday_name,Nombre del festivo,string,N/A,Día de la Independencia
+tavg,Temp. media diaria,float,°C,6.5
+tmin,Temp. mínima diaria,float,°C,-3.2
+tmax,Temp. máxima diaria,float,°C,14.0
+prcp,Precipitación diaria,float,mm,2.8
+snow,Nieve diaria (indicador/categ. del doc),float,mm/día,1.0
+wdir,Dirección del viento,float,grados,190
+wspd,Velocidad del viento,float,m/s,14.8
+wpgt,Ráfagas de viento,float,m/s,21.4
+pres,Presión atmosférica media,float,hPa,1023.4
+tsun,Horas de sol,float,minutos o horas (según fuente),-
+prcp_mm_month,Precipitación total del mes (2024),float,mm/mes,78.1
+snow_mm_month,Nieve total del mes (2024),float,mm/mes,27.5
+prcp_prob_month_%,Prob. precipitación mensual (2024),float,%,58.1
+snow_prob_month_%,Prob. nieve mensual (2024),float,%,9.7
+clear_%,Proporción días despejados (2024),float,%,51.8
+mostly_clear_%,Proporción días casi despejados (2024),float,%,16.6
+partly_cloudy_%,Proporción días parcialmente nublados (2024),float,%,10.2
+mostly_cloudy_%,Proporción días casi nublados (2024),float,%,8.8
+cloudy_%,Proporción días nublados (2024),float,%,12.6
+dry_%,% de días secos (sensación) 2024,float,%,50.7
+comfortable_%,% de días cómodos 2024,float,%,29.9
+humid_%,% de días húmedos 2024,float,%,18.1
+oppressive_%,% de días bochornosos 2024,float,%,1.4
+miserable_%,% de días muy incómodos 2024,float,%,0.0
+other_%,Otros (si aplica) 2024,float,%,0.0
+tavg_lag1,Rezago de 1 días de la variable tavg,float,igual a la variable base,-
+tavg_lag3,Rezago de 3 días de la variable tavg,float,igual a la variable base,-
+tavg_lag7,Rezago de 7 días de la variable tavg,float,igual a la variable base,-
+tmin_lag1,Rezago de 1 días de la variable tmin,float,igual a la variable base,-
+tmin_lag3,Rezago de 3 días de la variable tmin,float,igual a la variable base,-
+tmin_lag7,Rezago de 7 días de la variable tmin,float,igual a la variable base,-
+tmax_lag1,Rezago de 1 días de la variable tmax,float,igual a la variable base,-
+tmax_lag3,Rezago de 3 días de la variable tmax,float,igual a la variable base,-
+tmax_lag7,Rezago de 7 días de la variable tmax,float,igual a la variable base,-
+prcp_lag1,Rezago de 1 días de la variable prcp,float,igual a la variable base,-
+prcp_lag3,Rezago de 3 días de la variable prcp,float,igual a la variable base,-
+prcp_lag7,Rezago de 7 días de la variable prcp,float,igual a la variable base,-
+snow_lag1,Rezago de 1 días de la variable snow,float,igual a la variable base,-
+snow_lag3,Rezago de 3 días de la variable snow,float,igual a la variable base,-
+snow_lag7,Rezago de 7 días de la variable snow,float,igual a la variable base,-
+wspd_lag1,Rezago de 1 días de la variable wspd,float,igual a la variable base,-
+wspd_lag3,Rezago de 3 días de la variable wspd,float,igual a la variable base,-
+wspd_lag7,Rezago de 7 días de la variable wspd,float,igual a la variable base,-
+wpgt_lag1,Rezago de 1 días de la variable wpgt,float,igual a la variable base,-
+wpgt_lag3,Rezago de 3 días de la variable wpgt,float,igual a la variable base,-
+wpgt_lag7,Rezago de 7 días de la variable wpgt,float,igual a la variable base,-
+pres_lag1,Rezago de 1 días de la variable pres,float,igual a la variable base,-
+pres_lag3,Rezago de 3 días de la variable pres,float,igual a la variable base,-
+pres_lag7,Rezago de 7 días de la variable pres,float,igual a la variable base,-
+tsun_lag1,Rezago de 1 días de la variable tsun,float,igual a la variable base,-
+tsun_lag3,Rezago de 3 días de la variable tsun,float,igual a la variable base,-
+tsun_lag7,Rezago de 7 días de la variable tsun,float,igual a la variable base,-
+tavg_7d_mean,Media móvil 7d de la variable tavg,float,igual a la variable base,-
+tavg_7d_sum,Suma móvil 7d de la variable tavg,float,igual a la variable base,-
+tavg_14d_sum,Suma móvil 14d de la variable tavg,float,igual a la variable base,-
+tmin_7d_mean,Media móvil 7d de la variable tmin,float,igual a la variable base,-
+tmin_7d_sum,Suma móvil 7d de la variable tmin,float,igual a la variable base,-
+tmin_14d_sum,Suma móvil 14d de la variable tmin,float,igual a la variable base,-
+tmax_7d_mean,Media móvil 7d de la variable tmax,float,igual a la variable base,-
+tmax_7d_sum,Suma móvil 7d de la variable tmax,float,igual a la variable base,-
+tmax_14d_sum,Suma móvil 14d de la variable tmax,float,igual a la variable base,-
+prcp_7d_mean,Media móvil 7d de la variable prcp,float,igual a la variable base,-
+prcp_7d_sum,Suma móvil 7d de la variable prcp,float,igual a la variable base,-
+prcp_14d_sum,Suma móvil 14d de la variable prcp,float,igual a la variable base,-
+snow_7d_mean,Media móvil 7d de la variable snow,float,igual a la variable base,-
+snow_7d_sum,Suma móvil 7d de la variable snow,float,igual a la variable base,-
+snow_14d_sum,Suma móvil 14d de la variable snow,float,igual a la variable base,-
+wspd_7d_mean,Media móvil 7d de la variable wspd,float,igual a la variable base,-
+wspd_7d_sum,Suma móvil 7d de la variable wspd,float,igual a la variable base,-
+wspd_14d_sum,Suma móvil 14d de la variable wspd,float,igual a la variable base,-
+wpgt_7d_mean,Media móvil 7d de la variable wpgt,float,igual a la variable base,-
+wpgt_7d_sum,Suma móvil 7d de la variable wpgt,float,igual a la variable base,-
+wpgt_14d_sum,Suma móvil 14d de la variable wpgt,float,igual a la variable base,-
+pres_7d_mean,Media móvil 7d de la variable pres,float,igual a la variable base,-
+pres_7d_sum,Suma móvil 7d de la variable pres,float,igual a la variable base,-
+pres_14d_sum,Suma móvil 14d de la variable pres,float,igual a la variable base,-
+tsun_7d_mean,Media móvil 7d de la variable tsun,float,igual a la variable base,-
+tsun_7d_sum,Suma móvil 7d de la variable tsun,float,igual a la variable base,-
+tsun_14d_sum,Suma móvil 14d de la variable tsun,float,igual a la variable base,-
+prcp_mm_month_lag30d,Rezago de 30d días de la variable prcp_mm_month,float,igual a la variable base,-
+prcp_mm_month_lag90d,Rezago de 90d días de la variable prcp_mm_month,float,igual a la variable base,-
+snow_mm_month_lag30d,Rezago de 30d días de la variable snow_mm_month,float,igual a la variable base,-
+snow_mm_month_lag90d,Rezago de 90d días de la variable snow_mm_month,float,igual a la variable base,-
+prcp_prob_month_%_lag30d,Rezago de 30d días de la variable prcp_prob_month_%,float,igual a la variable base,-
+prcp_prob_month_%_lag90d,Rezago de 90d días de la variable prcp_prob_month_%,float,igual a la variable base,-
+snow_prob_month_%_lag30d,Rezago de 30d días de la variable snow_prob_month_%,float,igual a la variable base,-
+snow_prob_month_%_lag90d,Rezago de 90d días de la variable snow_prob_month_%,float,igual a la variable base,-
+clear_%_lag30d,Rezago de 30d días de la variable clear_%,float,igual a la variable base,-
+clear_%_lag90d,Rezago de 90d días de la variable clear_%,float,igual a la variable base,-
+mostly_clear_%_lag30d,Rezago de 30d días de la variable mostly_clear_%,float,igual a la variable base,-
+mostly_clear_%_lag90d,Rezago de 90d días de la variable mostly_clear_%,float,igual a la variable base,-
+partly_cloudy_%_lag30d,Rezago de 30d días de la variable partly_cloudy_%,float,igual a la variable base,-
+partly_cloudy_%_lag90d,Rezago de 90d días de la variable partly_cloudy_%,float,igual a la variable base,-
+mostly_cloudy_%_lag30d,Rezago de 30d días de la variable mostly_cloudy_%,float,igual a la variable base,-
+mostly_cloudy_%_lag90d,Rezago de 90d días de la variable mostly_cloudy_%,float,igual a la variable base,-
+cloudy_%_lag30d,Rezago de 30d días de la variable cloudy_%,float,igual a la variable base,-
+cloudy_%_lag90d,Rezago de 90d días de la variable cloudy_%,float,igual a la variable base,-
+dry_%_lag30d,Rezago de 30d días de la variable dry_%,float,igual a la variable base,-
+dry_%_lag90d,Rezago de 90d días de la variable dry_%,float,igual a la variable base,-
+comfortable_%_lag30d,Rezago de 30d días de la variable comfortable_%,float,igual a la variable base,-
+comfortable_%_lag90d,Rezago de 90d días de la variable comfortable_%,float,igual a la variable base,-
+humid_%_lag30d,Rezago de 30d días de la variable humid_%,float,igual a la variable base,-
+humid_%_lag90d,Rezago de 90d días de la variable humid_%,float,igual a la variable base,-
+oppressive_%_lag30d,Rezago de 30d días de la variable oppressive_%,float,igual a la variable base,-
+oppressive_%_lag90d,Rezago de 90d días de la variable oppressive_%,float,igual a la variable base,-
+miserable_%_lag30d,Rezago de 30d días de la variable miserable_%,float,igual a la variable base,-
+miserable_%_lag90d,Rezago de 90d días de la variable miserable_%,float,igual a la variable base,-
+other_%_lag30d,Rezago de 30d días de la variable other_%,float,igual a la variable base,-
+other_%_lag90d,Rezago de 90d días de la variable other_%,float,igual a la variable base,-
+prcp_mm_month_30d_mean,Media móvil mm de la variable prcp,float,igual a la variable base,-
+prcp_mm_month_30d_sum,Suma móvil mm de la variable prcp,float,igual a la variable base,-
+prcp_mm_month_90d_mean,Media móvil mm de la variable prcp,float,igual a la variable base,-
+prcp_mm_month_90d_sum,Suma móvil mm de la variable prcp,float,igual a la variable base,-
+snow_mm_month_30d_mean,Media móvil mm de la variable snow,float,igual a la variable base,-
+snow_mm_month_30d_sum,Suma móvil mm de la variable snow,float,igual a la variable base,-
+snow_mm_month_90d_mean,Media móvil mm de la variable snow,float,igual a la variable base,-
+snow_mm_month_90d_sum,Suma móvil mm de la variable snow,float,igual a la variable base,-
+prcp_prob_month_%_30d_mean,Media móvil prob de la variable prcp,float,igual a la variable base,-
+prcp_prob_month_%_30d_sum,Suma móvil prob de la variable prcp,float,igual a la variable base,-
+prcp_prob_month_%_90d_mean,Media móvil prob de la variable prcp,float,igual a la variable base,-
+prcp_prob_month_%_90d_sum,Suma móvil prob de la variable prcp,float,igual a la variable base,-
+snow_prob_month_%_30d_mean,Media móvil prob de la variable snow,float,igual a la variable base,-
+snow_prob_month_%_30d_sum,Suma móvil prob de la variable snow,float,igual a la variable base,-
+snow_prob_month_%_90d_mean,Media móvil prob de la variable snow,float,igual a la variable base,-
+snow_prob_month_%_90d_sum,Suma móvil prob de la variable snow,float,igual a la variable base,-
+clear_%_30d_mean,Media móvil % de la variable clear,float,igual a la variable base,-
+clear_%_30d_sum,Suma móvil % de la variable clear,float,igual a la variable base,-
+clear_%_90d_mean,Media móvil % de la variable clear,float,igual a la variable base,-
+clear_%_90d_sum,Suma móvil % de la variable clear,float,igual a la variable base,-
+mostly_clear_%_30d_mean,Media móvil clear de la variable mostly,float,igual a la variable base,-
+mostly_clear_%_30d_sum,Suma móvil clear de la variable mostly,float,igual a la variable base,-
+mostly_clear_%_90d_mean,Media móvil clear de la variable mostly,float,igual a la variable base,-
+mostly_clear_%_90d_sum,Suma móvil clear de la variable mostly,float,igual a la variable base,-
+partly_cloudy_%_30d_mean,Media móvil cloudy de la variable partly,float,igual a la variable base,-
+partly_cloudy_%_30d_sum,Suma móvil cloudy de la variable partly,float,igual a la variable base,-
+partly_cloudy_%_90d_mean,Media móvil cloudy de la variable partly,float,igual a la variable base,-
+partly_cloudy_%_90d_sum,Suma móvil cloudy de la variable partly,float,igual a la variable base,-
+mostly_cloudy_%_30d_mean,Media móvil cloudy de la variable mostly,float,igual a la variable base,-
+mostly_cloudy_%_30d_sum,Suma móvil cloudy de la variable mostly,float,igual a la variable base,-
+mostly_cloudy_%_90d_mean,Media móvil cloudy de la variable mostly,float,igual a la variable base,-
+mostly_cloudy_%_90d_sum,Suma móvil cloudy de la variable mostly,float,igual a la variable base,-
+cloudy_%_30d_mean,Media móvil % de la variable cloudy,float,igual a la variable base,-
+cloudy_%_30d_sum,Suma móvil % de la variable cloudy,float,igual a la variable base,-
+cloudy_%_90d_mean,Media móvil % de la variable cloudy,float,igual a la variable base,-
+cloudy_%_90d_sum,Suma móvil % de la variable cloudy,float,igual a la variable base,-
+dry_%_30d_mean,Media móvil % de la variable dry,float,igual a la variable base,-
+dry_%_30d_sum,Suma móvil % de la variable dry,float,igual a la variable base,-
+dry_%_90d_mean,Media móvil % de la variable dry,float,igual a la variable base,-
+dry_%_90d_sum,Suma móvil % de la variable dry,float,igual a la variable base,-
+comfortable_%_30d_mean,Media móvil % de la variable comfortable,float,igual a la variable base,-
+comfortable_%_30d_sum,Suma móvil % de la variable comfortable,float,igual a la variable base,-
+comfortable_%_90d_mean,Media móvil % de la variable comfortable,float,igual a la variable base,-
+comfortable_%_90d_sum,Suma móvil % de la variable comfortable,float,igual a la variable base,-
+humid_%_30d_mean,Media móvil % de la variable humid,float,igual a la variable base,-
+humid_%_30d_sum,Suma móvil % de la variable humid,float,igual a la variable base,-
+humid_%_90d_mean,Media móvil % de la variable humid,float,igual a la variable base,-
+humid_%_90d_sum,Suma móvil % de la variable humid,float,igual a la variable base,-
+oppressive_%_30d_mean,Media móvil % de la variable oppressive,float,igual a la variable base,-
+oppressive_%_30d_sum,Suma móvil % de la variable oppressive,float,igual a la variable base,-
+oppressive_%_90d_mean,Media móvil % de la variable oppressive,float,igual a la variable base,-
+oppressive_%_90d_sum,Suma móvil % de la variable oppressive,float,igual a la variable base,-
+miserable_%_30d_mean,Media móvil % de la variable miserable,float,igual a la variable base,-
+miserable_%_30d_sum,Suma móvil % de la variable miserable,float,igual a la variable base,-
+miserable_%_90d_mean,Media móvil % de la variable miserable,float,igual a la variable base,-
+miserable_%_90d_sum,Suma móvil % de la variable miserable,float,igual a la variable base,-
+other_%_30d_mean,Media móvil % de la variable other,float,igual a la variable base,-
+other_%_30d_sum,Suma móvil % de la variable other,float,igual a la variable base,-
+other_%_90d_mean,Media móvil % de la variable other,float,igual a la variable base,-
+other_%_90d_sum,Suma móvil % de la variable other,float,igual a la variable base,-
