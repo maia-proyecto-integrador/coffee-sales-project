@@ -703,8 +703,6 @@ def validation_panel(drink, period, dow, hour_range, horizon=7):
     forecast_total = forecast_total.iloc[:len(test)]
     forecast_total.index = test.index
 
-
-
     # DataFrame validación
     val_df = pd.DataFrame({"date": test.index, "real": test.values, "forecast": forecast_total.values})
 

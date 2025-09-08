@@ -228,7 +228,7 @@ _mlflow_log_run("sarimax", {"HORIZON": HORIZON},
 # 5️⃣ LSTM directo
 # ===========================
 LSTM_LOOKBACK = 30
-LSTM_UNITS = 64
+LSTM_UNITS = 32
 LSTM_DROPOUT = 0.2
 LSTM_EPOCHS = 10
 LSTM_BATCH = 128
