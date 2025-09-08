@@ -780,35 +780,36 @@ RECIPES = {
 
 
 PRICE_REF = {
-    "coffee_g": 2.0,       # ~2000 ₴/kg ≈ 2 ₴/g
-    "milk_ml": 0.048,      # ~48 ₴/L ≈ 0.048 ₴/ml
+    "coffee_g": 1.0,       # ~2000 ₴/kg ≈ 2 ₴/g
+    "milk_ml": 0.04,      # ~48 ₴/L ≈ 0.048 ₴/ml
     "water_ml": 0.001,     # simbólico
-    "chocolate_g": 0.5,    # ~500 ₴/kg ≈ 0.5 ₴/g
-    "sugar_g": 0.07        # ~70 ₴/kg ≈ 0.07 ₴/g
+    "chocolate_g": 0.4,    # ~500 ₴/kg ≈ 0.5 ₴/g
+    "sugar_g": 0.05        # ~70 ₴/kg ≈ 0.07 ₴/g
 }
 
 # ===========================
 # 📦 Cálculo de insumos
 # ===========================
 def calculate_supply_needs(prod_fc_df, df_hist):
-    """Calcula insumos y costos a partir de pronósticos y precios recientes."""
+    """Calcula insumos y costos a partir de pronósticos y precios reales (última transacción)."""
     if prod_fc_df.empty:
         print("DEBUG calculate_supply_needs → prod_fc_df está VACÍO")
         return pd.DataFrame(), pd.DataFrame(), 0.0, 0.0, 0.0
 
-    # 🔑 Normalizar nombres: quitar espacios y unificar mayúsculas
+    # 🔑 Normalizar nombres
     prod_fc_df["coffee_name"] = (
         prod_fc_df["coffee_name"]
         .astype(str)
-        .str.strip()           # quita espacios antes/después
-        .str.replace(r"\s+", " ", regex=True)  # colapsa espacios múltiples
-        .str.title()           # todo en Title Case
+        .str.strip()
+        .str.replace(r"\s+", " ", regex=True)
+        .str.title()
     )
 
     if not isinstance(df_hist, pd.DataFrame):
         df_hist = df_hist.compute()
 
-    recent_prices = (
+    # ✅ Obtener precios unitarios de la última transacción por producto
+    latest_prices = (
         df_hist.sort_values("datetime")
         .groupby("coffee_name")["money"]
         .last()
@@ -816,21 +817,31 @@ def calculate_supply_needs(prod_fc_df, df_hist):
     )
 
     insumo_rows = []
+    ingresos = 0.0
+
     for prod, forecast_sum in prod_fc_df.groupby("coffee_name")["forecast"].sum().items():
         recipe = RECIPES.get(prod)
-        if recipe is None:
-            print(f"DEBUG calculate_supply_needs → producto sin receta: '{prod}'")
+        unit_price = latest_prices.get(prod, None)
+
+        if recipe is None or unit_price is None or unit_price <= 0:
+            print(f"⚠️ Producto sin receta o sin precio válido: '{prod}'")
             continue
+
+        # Convertir ventas ₴ -> unidades estimadas
+        unidades = forecast_sum / unit_price
+        ingresos += forecast_sum
+
         for insumo, qty in recipe.items():
-            cantidad = forecast_sum * qty
+            cantidad = unidades * qty
             costo_unitario = PRICE_REF.get(insumo, 0)
             costo_total = cantidad * costo_unitario
             insumo_rows.append({
                 "Producto": prod,
+                "Unidades estimadas": round(unidades, 2),
                 "Insumo": insumo,
-                "Cantidad": cantidad,
+                "Cantidad": round(cantidad, 2),
                 "Costo unitario (₴)": costo_unitario,
-                "Costo total (₴)": costo_total,
+                "Costo total (₴)": round(costo_total, 2),
             })
 
     if not insumo_rows:
@@ -844,22 +855,10 @@ def calculate_supply_needs(prod_fc_df, df_hist):
         .reset_index()
     )
 
-    # Redondear
-    supply_df["Cantidad"] = supply_df["Cantidad"].round(2)
-    supply_df["Costo total (₴)"] = supply_df["Costo total (₴)"].round(2)
-    resumen["Cantidad"] = resumen["Cantidad"].round(2)
-    resumen["Costo total (₴)"] = resumen["Costo total (₴)"].round(2)
-
     total_cost = resumen["Costo total (₴)"].sum()
-
-    ingresos = 0.0
-    for prod, forecast_sum in prod_fc_df.groupby("coffee_name")["forecast"].sum().items():
-        precio = recent_prices.get(prod, 0)
-        ingresos += forecast_sum * precio
-
     profit = ingresos - total_cost
-    return supply_df, resumen, total_cost, ingresos, profit
 
+    return supply_df, resumen, total_cost, ingresos, profit
 
 # ===========================
 # 📦 Inventario y costos
