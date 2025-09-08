@@ -123,14 +123,8 @@ h1, h2, h3, h4 {
 # 📂 Cargar datos
 # ===========================
 df = dd.read_csv(
-<<<<<<< HEAD:dashboard.py
-    "index_1.csv",
-    dtype={"holiday_name": "object"},
-    assume_missing=True
-=======
     "data/processed/coffee_clean_dataset.csv",
     assume_missing=True,
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
 )
 
 # Normalizar columna datetime
@@ -138,9 +132,6 @@ df["datetime"] = dd.to_datetime(df["datetime"], errors="coerce", utc=True).dt.tz
     None
 )
 df = df.dropna(subset=["datetime"])
-<<<<<<< HEAD:dashboard.py
-df["money"] = dd.to_numeric(df["money"], errors="coerce").fillna(0)
-=======
 
 # Extraer la hora
 df["hour"] = df["datetime"].dt.hour
@@ -149,15 +140,10 @@ df["hour"] = df["datetime"].dt.hour
 df["money"] = dd.to_numeric(df["money"], errors="coerce").fillna(0)
 
 # Asegurar coffee_name como string
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
 df["coffee_name"] = df["coffee_name"].astype("object")
 
-# Mapear día de la semana con meta explícito
+# Mapear día de la semana al español
 dow_map = {
-<<<<<<< HEAD:dashboard.py
-    0.0: "Lunes", 1.0: "Martes", 2.0: "Miércoles",
-    3.0: "Jueves", 4.0: "Viernes", 5.0: "Sábado", 6.0: "Domingo"
-=======
     "Monday": "Lunes",
     "Tuesday": "Martes",
     "Wednesday": "Miércoles",
@@ -165,7 +151,6 @@ dow_map = {
     "Friday": "Viernes",
     "Saturday": "Sábado",
     "Sunday": "Domingo",
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
 }
 df["dow"] = df["dow"].map(dow_map, meta=("dow", "object"))
 
@@ -229,37 +214,13 @@ hour_filter = pn.widgets.IntRangeSlider(
     width=240,
 )
 
-<<<<<<< HEAD:dashboard.py
-# Festivo
-holiday_filter = pn.widgets.Checkbox(
-    name="🎉 Solo festivos",
-    value=False,
-    width=250
-)
-
-# Selección de modelo de forecast
-model_filter = pn.widgets.Select(
-    name="🔮 Modelo de forecast",
-    options=["holt-winters", "arima", "prophet", "naive"],
-    value="holt-winters",
-    width=250
-)
-
-# Organizar en WidgetBox
-=======
 # Agrupar en Sidebar
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
 sidebar_widgets = pn.WidgetBox(
     "### ⚙️ Filtros",
     drink_filter,
     date_filter,
     dow_filter,
     hour_filter,
-<<<<<<< HEAD:dashboard.py
-    holiday_filter,
-    model_filter,
-=======
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
     width=300,
     margin=(10, 10, 10, 10),
 )
@@ -304,14 +265,9 @@ revenue_total_kpi = pn.indicators.Number(
 # Producto más vendido
 top_product_kpi = pn.pane.Markdown("### Producto más vendido: N/A")
 
-<<<<<<< HEAD:dashboard.py
-# Función para actualizar KPIs con filtros
-def update_kpis(drink, period, dow, hour_range, holiday, model):
-=======
 
 def update_kpis(drink, period, dow, hour_range):
     """Actualiza los KPIs en función de los filtros aplicados."""
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
     dff = df[
         (df["datetime"] >= pd.to_datetime(period[0]))
         & (df["datetime"] <= pd.to_datetime(period[1]))
@@ -322,12 +278,6 @@ def update_kpis(drink, period, dow, hour_range):
 
     if dow and "All" not in dow:
         dff = dff[dff["dow"].isin(dow)]
-<<<<<<< HEAD:dashboard.py
-    dff = dff[(dff["hour"] >= hour_range[0]) & (dff["hour"] <= hour_range[1])]
-    if holiday:
-        dff = dff[dff["is_holiday"] == True]
-=======
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
 
     dff = dff[(dff["hour"] >= hour_range[0]) & (dff["hour"] <= hour_range[1])]
     dff_pd = dff.compute()
@@ -404,11 +354,6 @@ kpi_view = pn.bind(
     period=date_filter,
     dow=dow_filter,
     hour_range=hour_filter,
-<<<<<<< HEAD:dashboard.py
-    holiday=holiday_filter,
-    model=model_filter
-=======
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
 )
 
 # Añadir al template
@@ -420,12 +365,8 @@ template.main.append(
 # 📈 Patrones de compra
 # ===========================
 
-<<<<<<< HEAD:dashboard.py
-def patrones_compra(drink, period, dow, hour_range, holiday, model):
-=======
 def patrones_compra(drink, period, dow, hour_range):
     """Muestra la evolución temporal y la composición de ventas por bebida."""
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
     dff = df[
         (df["datetime"] >= pd.to_datetime(period[0]))
         & (df["datetime"] <= pd.to_datetime(period[1]))
@@ -436,12 +377,6 @@ def patrones_compra(drink, period, dow, hour_range):
 
     if dow and "All" not in dow:
         dff = dff[dff["dow"].isin(dow)]
-<<<<<<< HEAD:dashboard.py
-    dff = dff[(dff["hour"] >= hour_range[0]) & (dff["hour"] <= hour_range[1])]
-    if holiday:
-        dff = dff[dff["is_holiday"] == True]
-=======
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
 
     dff = dff[
         (dff["hour"] >= hour_range[0])
@@ -505,11 +440,6 @@ patterns_view = pn.bind(
     period=date_filter,
     dow=dow_filter,
     hour_range=hour_filter,
-<<<<<<< HEAD:dashboard.py
-    holiday=holiday_filter,
-    model=model_filter
-=======
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
 )
 
 # Añadir al template
@@ -621,15 +551,9 @@ def calculate_errors(real, fitted):
 # ===========================
 # 🔮 Pronóstico con modelo ganador (total y por producto)
 # ===========================
-<<<<<<< HEAD:dashboard.py
-LOOKBACK=7
-
-def forecast_panel(drink, period, dow, hour_range, holiday, model, horizon=15, return_data=False):
-=======
 LOOKBACK = 7
 def forecast_panel(drink, period, dow, hour_range, horizon=7, return_data=False):
     """Genera el pronóstico total a partir de la suma de pronósticos por producto."""
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
     # 📂 Filtros
     dff = df[
         (df["datetime"] >= pd.to_datetime(period[0]))
@@ -640,8 +564,6 @@ def forecast_panel(drink, period, dow, hour_range, horizon=7, return_data=False)
     if dow and "All" not in dow:
         dff = dff[dff["dow"].isin(dow)]
     dff = dff[(dff["hour"] >= hour_range[0]) & (dff["hour"] <= hour_range[1])]
-    if holiday:
-        dff = dff[dff["is_holiday"] == True]
 
     dff_pd = dff.compute()
     if dff_pd.empty:
@@ -740,15 +662,8 @@ def forecast_panel(drink, period, dow, hour_range, horizon=7, return_data=False)
     return panel_out
 
 
-<<<<<<< HEAD:dashboard.py
-# ===========================
-# 📊 Validación de modelo
-# ===========================
-def validation_panel(drink, period, dow, hour_range, holiday, model, horizon=15):
-=======
 def validation_panel(drink, period, dow, hour_range, horizon=7):
     """Valida el modelo contra la suma de pronósticos por producto."""
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
     # 📂 Filtros
     dff = df[
         (df["datetime"] >= pd.to_datetime(period[0]))
@@ -759,8 +674,6 @@ def validation_panel(drink, period, dow, hour_range, horizon=7):
     if dow and "All" not in dow:
         dff = dff[dff["dow"].isin(dow)]
     dff = dff[(dff["hour"] >= hour_range[0]) & (dff["hour"] <= hour_range[1])]
-    if holiday:
-        dff = dff[dff["is_holiday"] == True]
 
     dff_pd = dff.compute()
     if dff_pd.empty:
@@ -829,45 +742,15 @@ def validation_panel(drink, period, dow, hour_range, horizon=7):
     return pn.Column(pn.Row(kpi_mape, kpi_rmse, kpi_mae), status, pn.pane.HoloViews(plot, linked_axes=False))
 
 
-<<<<<<< HEAD:dashboard.py
-# Pronóstico de ventas
-forecast_view = pn.bind(
-    forecast_panel,
-    drink=drink_filter,
-    period=date_filter,
-    dow=dow_filter,
-    hour_range=hour_filter,
-    holiday=holiday_filter,
-    model=model_filter
-)
-
-template.main.append(
-    pn.Card(
-        pn.Column(forecast_view, sizing_mode="stretch_width"),
-        title="🔮 Pronóstico de ventas (total y productos)",
-        max_width=1300,
-        sizing_mode="stretch_width",
-        collapsible=True
-    )
-)
-
-# Validación de modelo
-=======
 # ===========================
 # 🔍 Validación en dashboard
 # ===========================
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
 validation_view = pn.bind(
     validation_panel,
     drink=drink_filter,
     period=date_filter,
     dow=dow_filter,
     hour_range=hour_filter,
-<<<<<<< HEAD:dashboard.py
-    holiday=holiday_filter,
-    model=model_filter
-=======
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
 )
 
 template.main.append(
@@ -1039,32 +922,6 @@ def finances_panel(prod_fc_df, df_hist):
     return pn.Row(kpi_cost, kpi_revenue, kpi_profit)
 
 
-<<<<<<< HEAD:dashboard.py
-# Forecast
-forecast_view, forecast_data = pn.bind(
-    lambda **kwargs: forecast_panel(**kwargs, return_data=True),
-    drink=drink_filter, period=date_filter, dow=dow_filter,
-    hour_range=hour_filter, holiday=holiday_filter, model=model_filter
-)()
-
-# Inventario
-inventory_view = pn.bind(
-    lambda **kwargs: inventory_panel(forecast_panel(**kwargs, return_data=True)[1], df),
-    drink=drink_filter, period=date_filter, dow=dow_filter,
-    hour_range=hour_filter, holiday=holiday_filter, model=model_filter
-)
-
-template.main.append(
-    pn.Card(inventory_view, title="📦 Inventario", max_width=1300,
-            sizing_mode="stretch_width", collapsible=True)
-)
-
-# Finanzas
-finances_view = pn.bind(
-    lambda **kwargs: finances_panel(forecast_panel(**kwargs, return_data=True)[1], df),
-    drink=drink_filter, period=date_filter, dow=dow_filter,
-    hour_range=hour_filter, holiday=holiday_filter, model=model_filter
-=======
 # ===========================
 # 📦 Integrar en dashboard
 # ===========================
@@ -1128,7 +985,6 @@ template.main.append(
         sizing_mode="stretch_width",
         collapsible=True,
     )
->>>>>>> 2947c45 (Fix validation forecast alignment):dashboard/dashboard.py
 )
 
 template.main.append(
