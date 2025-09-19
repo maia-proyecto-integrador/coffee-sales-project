@@ -13,3 +13,5 @@ logs/
 .editorconfig
 
 data/results/mlruns/
+__pycache__/
+*.pyc

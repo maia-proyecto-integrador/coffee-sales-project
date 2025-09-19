@@ -5,6 +5,7 @@ from .config import (TARGET, HORIZON, N_ORIGINS, MIN_TRAIN_DAYS, TOPK_IMP,
                      USE_LOG1P_TARGET, LGBM_OBJECTIVE, TWEEDIE_POWERS, RANDOM_STATE)
 from .splits import rolling_origins
 from .metrics import summarize_metrics
+from .registry import register_best_model   # ⬅️ NUEVO
 
 def filter_candidates(dfin, target=TARGET, null_frac_max=0.30):
     drop_like = {target, "date", "product"}
@@ -61,11 +62,12 @@ def lgbm_importance_until(dfin, feats, y_col, cutoff_date):
     imp = pd.DataFrame({"feature": feats, "importance": m.feature_importances_})
     return imp.sort_values("importance", ascending=False)
 
-def run_lgbm(df):
+def run_lgbm(df, register_final: bool = True):
     candidates = filter_candidates(df, target=TARGET, null_frac_max=0.30)
     df_l = build_direct_labels(df, TARGET, H=HORIZON)
 
     lgbm_all = []
+    last_selected_feats = None  # ⬅️ NUEVO: guardamos las últimas features elegidas
     splits = rolling_origins(df_l["date"], n_origins=N_ORIGINS, horizon=HORIZON)
     for (train_end, test_start, test_end) in splits:
         train = df_l[df_l["date"] <= train_end].copy()
@@ -78,6 +80,7 @@ def run_lgbm(df):
         imp_h1 = lgbm_importance_until(train, candidates, "y_1", train_end).head(TOPK_IMP)
         imp_h7 = lgbm_importance_until(train, candidates, "y_7", train_end).head(TOPK_IMP)
         selected_feats = sorted(set(imp_h1["feature"]).union(set(imp_h7["feature"])))
+        last_selected_feats = selected_feats if selected_feats else last_selected_feats  # ⬅️ NUEVO
 
         preds_blocks = []
         for h in range(1, HORIZON + 1):
@@ -143,4 +146,76 @@ def run_lgbm(df):
     lgbm_results = (pd.concat(lgbm_all, ignore_index=True) if lgbm_all
                     else pd.DataFrame(columns=["date","product",TARGET,"h","yhat","yhat_p10","yhat_p90","model"]))
     by_h_lgbm, overall_lgbm = summarize_metrics(lgbm_results.rename(columns={TARGET: "y"}))
+
+    # ---------------------------
+    # REGISTRO COMPATIBLE (opcional)
+    # ---------------------------
+    if register_final:
+        # 1) Elegimos features finales
+        final_feats = last_selected_feats if last_selected_feats else candidates
+        if not final_feats:
+            final_feats = candidates  # fallback
+
+        # 2) Refit final por horizonte sobre toda la historia disponible
+        df_full = df_l.copy()
+        bundle_models = {}
+        objectives_to_try = ["auto"] if LGBM_OBJECTIVE not in ["poisson", "tweedie"] else [LGBM_OBJECTIVE]
+        tweedie_grid = TWEEDIE_POWERS if "tweedie" in objectives_to_try else [None]
+
+        for h in range(1, HORIZON + 1):
+            y_col = f"y_{h}"
+            full_tr = df_full.dropna(subset=[y_col]).copy()
+            if full_tr.empty:
+                continue
+
+            X_tr, y_tr = full_tr[final_feats], full_tr[y_col]
+            if USE_LOG1P_TARGET:
+                y_tr = np.log1p(y_tr)
+
+            best_model, best_mae = None, np.inf
+            best_obj, best_power = "auto", None
+            for obj in objectives_to_try:
+                for power in tweedie_grid:
+                    mtmp = _fit_lgbm(X_tr, y_tr, objective=obj, tweedie_power=power)
+                    y_pred_tr = mtmp.predict(X_tr)
+                    y_pred_inv = np.expm1(y_pred_tr) if USE_LOG1P_TARGET else y_pred_tr
+                    cur_mae = float(np.mean(np.abs(full_tr[y_col] - y_pred_inv)))
+                    if cur_mae < best_mae:
+                        best_mae = cur_mae
+                        best_model = mtmp
+                        best_obj, best_power = obj, power
+
+            model_c = best_model
+            model_p10 = _fit_lgbm_quantile(X_tr, y_tr, alpha=0.10)
+            model_p90 = _fit_lgbm_quantile(X_tr, y_tr, alpha=0.90)
+
+            bundle_models[h] = {
+                "center": model_c,
+                "p10": model_p10,
+                "p90": model_p90,
+                "objective": best_obj,
+                "tweedie_power": best_power
+            }
+
+        # 3) Armamos bundle y registramos (el dashboard lo aceptará y usará su placeholder)
+        bundle = {
+            "family": "lgbm_direct",
+            "horizon": HORIZON,
+            "features": list(final_feats),
+            "models": bundle_models,
+            "use_log1p_target": bool(USE_LOG1P_TARGET)
+        }
+
+        metric_name = "sMAPE"
+        best_score = float(overall_lgbm.get(metric_name, 0.0)) if isinstance(overall_lgbm, dict) else 0.0
+
+        entry = register_best_model(
+            model_obj=bundle,
+            name="lgbm_direct",   # ← el dashboard ve 'lgbm' y aplica su fallback actual
+            metric=metric_name,
+            score=best_score,
+            horizon=HORIZON
+        )
+        print("[LGBM] best_model registrado (bundle):", entry)
+
     return lgbm_results, by_h_lgbm, overall_lgbm, candidates

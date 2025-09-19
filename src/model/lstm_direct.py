@@ -4,11 +4,18 @@ from typing import List, Tuple
 from sklearn.preprocessing import StandardScaler
 import keras
 from keras import layers
-from .config import (TARGET, HORIZON, N_ORIGINS, MIN_TRAIN_DAYS,
-                     LSTM_LOOKBACK, LSTM_UNITS, LSTM_DROPOUT, LSTM_LR,
-                     LSTM_EPOCHS, LSTM_BATCH, LSTM_PATIENCE, USE_LOG1P_TARGET)
+
+from .config import (
+    TARGET, HORIZON, N_ORIGINS, MIN_TRAIN_DAYS,
+    LSTM_LOOKBACK, LSTM_UNITS, LSTM_DROPOUT, LSTM_LR,
+    LSTM_EPOCHS, LSTM_BATCH, LSTM_PATIENCE, USE_LOG1P_TARGET
+)
 from .splits import rolling_origins
 from .metrics import summarize_metrics
+
+# 🔧 NUEVO: helpers para persistir y (opcional) registrar placeholder compatible con dashboard
+from .registry import save_keras, save_sklearn_like, register_best_model
+
 
 def numeric_feature_cols(dfin: pd.DataFrame, target: str) -> List[str]:
     cols = [c for c in dfin.columns if c not in {"date","product"} and not c.startswith("y_")
@@ -90,7 +97,11 @@ def infer_direct_for_split(model, scaler, feats, train_prod, test_prod, target: 
     out["product"]  = gte["product"].iloc[0]
     return out[["date","product","h","yhat","yhat_p10","yhat_p90"]]
 
-def run_lstm_direct(df):
+def run_lstm_direct(
+    df,
+    persist_final: bool = True,
+    register_as_dashboard_placeholder: bool = False  # 🔧 por defecto NO registra en registry.json
+):
     try:
         _ = keras.config.backend()
         TF_OK = True
@@ -110,6 +121,8 @@ def run_lstm_direct(df):
     print(f"[LSTM] #features usadas: {len(base_feats)} → {base_feats[:15]}{' ...' if len(base_feats)>15 else ''}")
 
     lstm_dir_all = []
+    last_model = None          # 🔧 guardaremos el último modelo entrenado
+    last_scaler = None         # 🔧 y su scaler (para persistir)
     splits = rolling_origins(df["date"], n_origins=N_ORIGINS, horizon=HORIZON)
     for (train_end, test_start, test_end) in splits:
         train = df[df["date"] <= train_end].copy()
@@ -124,7 +137,8 @@ def run_lstm_direct(df):
 
         X_tr, Y_tr = make_supervised_direct(df_train_ff, base_feats, TARGET, LSTM_LOOKBACK, HORIZON)
         if X_tr.shape[0] == 0:
-            print("[LSTM-direct] No se pudieron construir secuencias en este split."); continue
+            print("[LSTM-direct] No se pudieron construir secuencias en este split.")
+            continue
 
         X_tr_2d = X_tr.reshape(-1, X_tr.shape[-1])
         X_tr_scaled = scaler.transform(X_tr_2d).reshape(X_tr.shape).astype("float32")
@@ -133,6 +147,10 @@ def run_lstm_direct(df):
         model = build_model(n_feats=len(base_feats), horizon=HORIZON)
         es = keras.callbacks.EarlyStopping(monitor="loss", patience=LSTM_PATIENCE, restore_best_weights=True)
         model.fit(X_tr_scaled, Y_tr_model, epochs=LSTM_EPOCHS, batch_size=LSTM_BATCH, verbose=0, callbacks=[es])
+
+        # 🔧 conserva último modelo/scaler entrenados (para persistir al final)
+        last_model = model
+        last_scaler = scaler
 
         fold_parts = []
         for prod, gte in test.groupby("product"):
@@ -152,4 +170,34 @@ def run_lstm_direct(df):
     lstm_direct_results = (pd.concat(lstm_dir_all, ignore_index=True)
                            if lstm_dir_all else pd.DataFrame(columns=["date","product",TARGET,"h","yhat","yhat_p10","yhat_p90","model"]))
     by_h_lstm_dir, overall_lstm_dir = summarize_metrics(lstm_direct_results.rename(columns={TARGET:"y"}))
+
+    # 🔧 Persistencia de artefactos (Keras + scaler) SIN tocar dashboard
+    if persist_final and last_model is not None and last_scaler is not None:
+        try:
+            keras_path = save_keras(last_model, out_dir=None if False else None)  # usa default de registry (models/)
+        except TypeError:
+            # Si tu save_keras requiere out_dir obligatorio, usa:
+            from .registry import MODELS_DIR
+            keras_path = save_keras(last_model, out_dir=MODELS_DIR, filename="lstm_direct")
+        _ = save_sklearn_like(last_scaler, out_dir=keras_path if keras_path.is_dir() else keras_path.parent, filename="scaler.joblib")
+        print(f"[LSTM-direct] Artefactos guardados en: {keras_path}")
+
+    # 🔧 Opcional: registrar placeholder compatible con dashboard (no hace inferencia real de LSTM)
+    if register_as_dashboard_placeholder:
+        metric_name = "sMAPE"
+        best_score = float(overall_lstm_dir.get(metric_name, 0.0)) if isinstance(overall_lstm_dir, dict) else 0.0
+        bundle = {
+            "family": "lstm_direct",
+            "note": "placeholder para dashboard (usa promedio 7d). El artefacto Keras y scaler se guardaron aparte.",
+        }
+        entry = register_best_model(
+            model_obj=bundle,
+            name="lgbm_direct",   # << para que el dashboard use su fallback y NO se rompa
+            metric=metric_name,
+            score=best_score,
+            horizon=HORIZON
+        )
+        print("[LSTM-direct] best_model (placeholder) actualizado:", entry)
+
     return lstm_direct_results, by_h_lstm_dir, overall_lstm_dir
+
