@@ -13,7 +13,6 @@ from .config import (
 from .splits import rolling_origins
 from .metrics import summarize_metrics
 
-# 🔧 NUEVO: helpers para persistir y (opcional) registrar placeholder compatible con dashboard
 from .registry import save_keras, save_sklearn_like, register_best_model
 
 
@@ -100,7 +99,7 @@ def infer_direct_for_split(model, scaler, feats, train_prod, test_prod, target: 
 def run_lstm_direct(
     df,
     persist_final: bool = True,
-    register_as_dashboard_placeholder: bool = False  # 🔧 por defecto NO registra en registry.json
+    register_as_dashboard_placeholder: bool = False  
 ):
     try:
         _ = keras.config.backend()
@@ -121,8 +120,8 @@ def run_lstm_direct(
     print(f"[LSTM] #features usadas: {len(base_feats)} → {base_feats[:15]}{' ...' if len(base_feats)>15 else ''}")
 
     lstm_dir_all = []
-    last_model = None          # 🔧 guardaremos el último modelo entrenado
-    last_scaler = None         # 🔧 y su scaler (para persistir)
+    last_model = None          
+    last_scaler = None         
     splits = rolling_origins(df["date"], n_origins=N_ORIGINS, horizon=HORIZON)
     for (train_end, test_start, test_end) in splits:
         train = df[df["date"] <= train_end].copy()
@@ -148,7 +147,7 @@ def run_lstm_direct(
         es = keras.callbacks.EarlyStopping(monitor="loss", patience=LSTM_PATIENCE, restore_best_weights=True)
         model.fit(X_tr_scaled, Y_tr_model, epochs=LSTM_EPOCHS, batch_size=LSTM_BATCH, verbose=0, callbacks=[es])
 
-        # 🔧 conserva último modelo/scaler entrenados (para persistir al final)
+        
         last_model = model
         last_scaler = scaler
 
@@ -171,7 +170,7 @@ def run_lstm_direct(
                            if lstm_dir_all else pd.DataFrame(columns=["date","product",TARGET,"h","yhat","yhat_p10","yhat_p90","model"]))
     by_h_lstm_dir, overall_lstm_dir = summarize_metrics(lstm_direct_results.rename(columns={TARGET:"y"}))
 
-    # 🔧 Persistencia de artefactos (Keras + scaler) SIN tocar dashboard
+    
     if persist_final and last_model is not None and last_scaler is not None:
         try:
             keras_path = save_keras(last_model, out_dir=None if False else None)  # usa default de registry (models/)
@@ -182,7 +181,7 @@ def run_lstm_direct(
         _ = save_sklearn_like(last_scaler, out_dir=keras_path if keras_path.is_dir() else keras_path.parent, filename="scaler.joblib")
         print(f"[LSTM-direct] Artefactos guardados en: {keras_path}")
 
-    # 🔧 Opcional: registrar placeholder compatible con dashboard (no hace inferencia real de LSTM)
+    
     if register_as_dashboard_placeholder:
         metric_name = "sMAPE"
         best_score = float(overall_lstm_dir.get(metric_name, 0.0)) if isinstance(overall_lstm_dir, dict) else 0.0

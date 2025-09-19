@@ -1,4 +1,4 @@
-# src/model/registry.py
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -8,7 +8,7 @@ import pickle
 from datetime import datetime
 from typing import Any, Dict, Optional
 
-# --- Rutas base (raíz del repo = dos niveles arriba de este archivo)
+
 BASE_DIR = Path(__file__).resolve().parents[2]
 RESULTS_DIR = BASE_DIR / "results"
 MODELS_DIR = RESULTS_DIR / "models"
@@ -89,16 +89,16 @@ def update_best_model_entry(
     """
     registry = _read_registry()
 
-    # Convertimos artifact a ruta RELATIVA POSIX desde la raíz del repo
+   
     try:
         rel = artifact_path.relative_to(BASE_DIR)
     except ValueError:
-        # si está fuera, lo dejamos absoluto, pero normalizado a POSIX
+        
         rel = artifact_path
 
     entry = {
         "name": str(name),
-        "artifact": rel.as_posix(),   # << clave: POSIX SIEMPRE
+        "artifact": rel.as_posix(),   
         "metric": str(metric),
         "score": float(score),
         "horizon": int(horizon),

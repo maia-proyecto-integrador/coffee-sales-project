@@ -5,7 +5,7 @@ from .config import (TARGET, HORIZON, N_ORIGINS, MIN_TRAIN_DAYS, TOPK_IMP,
                      USE_LOG1P_TARGET, LGBM_OBJECTIVE, TWEEDIE_POWERS, RANDOM_STATE)
 from .splits import rolling_origins
 from .metrics import summarize_metrics
-from .registry import register_best_model   # ⬅️ NUEVO
+from .registry import register_best_model   # 
 
 def filter_candidates(dfin, target=TARGET, null_frac_max=0.30):
     drop_like = {target, "date", "product"}
@@ -67,7 +67,7 @@ def run_lgbm(df, register_final: bool = True):
     df_l = build_direct_labels(df, TARGET, H=HORIZON)
 
     lgbm_all = []
-    last_selected_feats = None  # ⬅️ NUEVO: guardamos las últimas features elegidas
+    last_selected_feats = None  #
     splits = rolling_origins(df_l["date"], n_origins=N_ORIGINS, horizon=HORIZON)
     for (train_end, test_start, test_end) in splits:
         train = df_l[df_l["date"] <= train_end].copy()
@@ -147,9 +147,7 @@ def run_lgbm(df, register_final: bool = True):
                     else pd.DataFrame(columns=["date","product",TARGET,"h","yhat","yhat_p10","yhat_p90","model"]))
     by_h_lgbm, overall_lgbm = summarize_metrics(lgbm_results.rename(columns={TARGET: "y"}))
 
-    # ---------------------------
-    # REGISTRO COMPATIBLE (opcional)
-    # ---------------------------
+    
     if register_final:
         # 1) Elegimos features finales
         final_feats = last_selected_feats if last_selected_feats else candidates

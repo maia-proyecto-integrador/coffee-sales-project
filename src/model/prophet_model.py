@@ -3,10 +3,10 @@ from prophet import Prophet
 from .config import (TARGET, HORIZON, N_ORIGINS, MIN_TRAIN_DAYS, PROPHET_USE_REGRESSORS)
 from .splits import rolling_origins
 from .metrics import summarize_metrics
-from .registry import register_best_model   # 🔧 NUEVO IMPORT
-import numpy as np                          # 🔧 para agregación de regresores (promedio)
+from .registry import register_best_model   #
+import numpy as np                          
 
-def run_prophet(df, register_final: bool = True):  # 🔧 parámetro opcional
+def run_prophet(df, register_final: bool = True):  
     candidate_regressors = [c for c in ["is_holiday","wx_temperature_2m","wx_precipitation","wx_cloudcover",
                                         "is_holiday_ext","is_holiday_prev","is_holiday_next"] if c in df.columns]
     print("[Prophet] Regresores detectados:", candidate_regressors)
@@ -61,8 +61,6 @@ def run_prophet(df, register_final: bool = True):  # 🔧 parámetro opcional
 
     by_h_prophet, overall_prophet = summarize_metrics(prophet_results.rename(columns={TARGET: "y"}))
 
-    # 🔧 --- BLOQUE NUEVO: modelo FINAL único para el dashboard ---
-    #     No toca tu BT; solo registra un Prophet final compatible.
     if register_final:
         # Serie agregada por día (suma del TARGET)
         agg = df.groupby("date", as_index=False)[TARGET].sum().sort_values("date")
@@ -71,7 +69,7 @@ def run_prophet(df, register_final: bool = True):  # 🔧 parámetro opcional
         m_final = Prophet(interval_width=0.80, weekly_seasonality=True,
                           daily_seasonality=False, yearly_seasonality=False)
 
-        # Si usas regresores, los agregamos por fecha (promedio). Así el dashboard podrá predecir.
+        
         if PROPHET_USE_REGRESSORS and candidate_regressors:
             for reg in candidate_regressors:
                 m_final.add_regressor(reg)
@@ -87,12 +85,12 @@ def run_prophet(df, register_final: bool = True):  # 🔧 parámetro opcional
 
         entry = register_best_model(
             model_obj=m_final,        # << Prophet serializado con joblib
-            name="prophet",           # << el dashboard busca 'prophet'
+            name="prophet",           
             metric=metric_name,
             score=best_score,
             horizon=HORIZON
         )
         print("[Prophet] best_model actualizado:", entry)
-    # 🔧 --- FIN BLOQUE NUEVO ---
+   
 
     return prophet_results, by_h_prophet, overall_prophet

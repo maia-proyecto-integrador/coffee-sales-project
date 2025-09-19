@@ -30,7 +30,7 @@ def run_sarimax(df: pd.DataFrame, register_final: bool = True):
     print(f"[SARIMAX] exog_cols: {exog_cols}")
 
     # ---------
-    # 1) Backtesting por producto (como en tu versión)
+    # 1) Backtesting por producto 
     # ---------
     orders_to_try = [((1, 0, 1), (1, 0, 1, 7)), ((0, 1, 1), (0, 1, 1, 7))]
 
@@ -131,11 +131,9 @@ def run_sarimax(df: pd.DataFrame, register_final: bool = True):
 
     by_h_sarimax, overall_sarimax = summarize_metrics(sarimax_results.rename(columns={TARGET: "y"}))
 
-    # ---------
-    # 2) Modelo FINAL único (compatible con dashboard.py)
-    #    Elegimos una especificación razonable (de las probadas) y refiteamos
-    #    sobre TODA la historia agregada (TARGET sumado por día)
-    # ---------
+    
+    # 2) Modelo FINAL único 
+    
     if register_final:
         # Serie agregada por día
         agg = df.sort_values("date").groupby("date", as_index=False)[TARGET].sum()
@@ -172,14 +170,13 @@ def run_sarimax(df: pd.DataFrame, register_final: bool = True):
                     continue
 
         if final_res is not None:
-            # Define el “score” que quieres escribir: usa overall_sarimax['sMAPE'] si está; si no, 0.0
+           
             metric_name = "sMAPE"
             best_score = float(overall_sarimax.get(metric_name, 0.0)) if isinstance(overall_sarimax, dict) else 0.0
 
             best_entry = register_best_model(
                 model_obj=final_res,     # objeto SARIMAXResults con .forecast/.get_forecast
                 name="sarimax",          # el dashboard busca 'sarimax'
-                metric=metric_name,
                 score=best_score,
                 horizon=HORIZON
             )
