@@ -11,3 +11,5 @@ logs/
 
 # Archivos de IDE
 .editorconfig
+
+data/results/mlruns/
