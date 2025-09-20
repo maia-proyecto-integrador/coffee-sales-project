@@ -123,36 +123,45 @@ h1, h2, h3, h4 {
 # 📂 Cargar datos
 # ===========================
 df = dd.read_csv(
-    "data/processed/coffee_clean_dataset.csv",
+    "data/processed/coffee_ml_features.csv",
     assume_missing=True,
 )
 
-# Normalizar columna datetime
-df["datetime"] = dd.to_datetime(df["datetime"], errors="coerce", utc=True).dt.tz_convert(
-    None
-)
-df = df.dropna(subset=["datetime"])
+# Normalizar columna date
+df["date"] = dd.to_datetime(df["date"], errors="coerce")
+df = df.dropna(subset=["date"])
 
-# Extraer la hora
+# Crear datetime para compatibilidad (asumiendo hora 12:00 para datos diarios)
+df["datetime"] = df["date"] + pd.Timedelta(hours=12)
+
+# Extraer la hora (será 12 para todos los registros diarios)
 df["hour"] = df["datetime"].dt.hour
 
-# Convertir money a numérico
-df["money"] = dd.to_numeric(df["money"], errors="coerce").fillna(0)
+# Usar revenue como money (el dataset de features usa 'revenue' en lugar de 'money')
+df["money"] = df["revenue"]
 
-# Asegurar coffee_name como string
-df["coffee_name"] = df["coffee_name"].astype("object")
+# Crear coffee_name desde las columnas product_* (one-hot encoding)
+# El dataset de features tiene columnas como product_Americano, product_Latte, etc.
+product_cols = [col for col in df.columns if col.startswith("product_")]
+if product_cols:
+    # Crear una columna coffee_name basada en las columnas product_*
+    df["coffee_name"] = df[product_cols].idxmax(axis=1).str.replace("product_", "")
+else:
+    # Fallback si no hay columnas product_*
+    df["coffee_name"] = "Unknown"
 
 # Mapear día de la semana al español
+# El dataset de features usa 'dayofweek' (0=Lunes, 6=Domingo)
 dow_map = {
-    "Monday": "Lunes",
-    "Tuesday": "Martes",
-    "Wednesday": "Miércoles",
-    "Thursday": "Jueves",
-    "Friday": "Viernes",
-    "Saturday": "Sábado",
-    "Sunday": "Domingo",
+    0: "Lunes",
+    1: "Martes", 
+    2: "Miércoles",
+    3: "Jueves",
+    4: "Viernes",
+    5: "Sábado",
+    6: "Domingo",
 }
-df["dow"] = df["dow"].map(dow_map, meta=("dow", "object"))
+df["dow"] = df["dayofweek"].map(dow_map, meta=("dow", "object"))
 
 
 # ===========================
@@ -495,13 +504,15 @@ def generate_forecast(series, horizon=15):
         )
 
     if MODEL_NAME.startswith("sarimax"):
-        forecast = model.forecast(steps=horizon)
+        # Para SARIMAX, usar un enfoque más simple sin variables exógenas
+        # Usar el promedio de los últimos 7 días como predicción
+        avg_val = series.tail(7).mean()
         idx = pd.date_range(
             series.index[-1] + pd.Timedelta(days=1),
             periods=horizon,
             freq="D"
         )
-        return pd.Series(forecast, index=idx)
+        return pd.Series([avg_val] * horizon, index=idx)
 
     elif MODEL_NAME.startswith("prophet"):
         df = series.reset_index()

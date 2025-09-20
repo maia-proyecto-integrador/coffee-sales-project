@@ -13,7 +13,7 @@ def init_mlflow(results_dir: Path):
         mlruns = (results_dir / "mlruns").resolve()
         mlflow.set_tracking_uri(mlruns.as_uri())
 
-    mlflow.set_experiment(os.getenv("MLFLOW_EXPERIMENT", "microproyecto_coffe_sales"))
+    mlflow.set_experiment(os.getenv("MLFLOW_EXPERIMENT", "microproyecto_coffee_sales"))
 
 
 def _mlflow_key(k: str) -> str:
