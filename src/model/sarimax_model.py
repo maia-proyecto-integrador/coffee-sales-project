@@ -177,6 +177,7 @@ def run_sarimax(df: pd.DataFrame, register_final: bool = True):
             best_entry = register_best_model(
                 model_obj=final_res,     # objeto SARIMAXResults con .forecast/.get_forecast
                 name="sarimax",          # el dashboard busca 'sarimax'
+                metric=metric_name,      # métrica usada para evaluación
                 score=best_score,
                 horizon=HORIZON
             )
