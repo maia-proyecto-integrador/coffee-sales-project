@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Admin/Documents/Python/coffee-sales-project/results/mlruns/159854076300791487/99c9cae1d6bd4dcdb90b768faa1b983e/artifacts
+end_time: 1757293406538
+entry_point_name: ''
+experiment_id: '159854076300791487'
+lifecycle_stage: active
+run_id: 99c9cae1d6bd4dcdb90b768faa1b983e
+run_name: prophet
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1757293406416
+status: 3
+tags: []
+user_id: Admin

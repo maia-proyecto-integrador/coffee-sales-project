@@ -11,3 +11,8 @@ logs/
 
 # Archivos de IDE
 .editorconfig
+
+data/results/mlruns/
+results/mlruns/
+__pycache__/
+*.pyc

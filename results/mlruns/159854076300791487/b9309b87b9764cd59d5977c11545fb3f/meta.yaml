@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Admin/Documents/Python/coffee-sales-project/results/mlruns/159854076300791487/b9309b87b9764cd59d5977c11545fb3f/artifacts
+end_time: 1757293417136
+entry_point_name: ''
+experiment_id: '159854076300791487'
+lifecycle_stage: active
+run_id: b9309b87b9764cd59d5977c11545fb3f
+run_name: sarimax
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1757293417016
+status: 3
+tags: []
+user_id: Admin

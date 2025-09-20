@@ -1,0 +1,225 @@
+date,product,transactions,h,yhat,model
+2025-02-24,Americano,3.0,1,,lstm_direct
+2025-02-24,Americano with Milk,7.0,1,,lstm_direct
+2025-02-24,Cappuccino,1.0,1,,lstm_direct
+2025-02-24,Cocoa,5.0,1,,lstm_direct
+2025-02-24,Cortado,0.0,1,,lstm_direct
+2025-02-24,Espresso,0.0,1,,lstm_direct
+2025-02-24,Hot Chocolate,1.0,1,,lstm_direct
+2025-02-24,Latte,5.0,1,,lstm_direct
+2025-02-25,Americano,5.0,2,,lstm_direct
+2025-02-25,Americano with Milk,2.0,2,,lstm_direct
+2025-02-25,Cappuccino,3.0,2,,lstm_direct
+2025-02-25,Cocoa,1.0,2,,lstm_direct
+2025-02-25,Cortado,0.0,2,,lstm_direct
+2025-02-25,Espresso,1.0,2,,lstm_direct
+2025-02-25,Hot Chocolate,0.0,2,,lstm_direct
+2025-02-25,Latte,0.0,2,,lstm_direct
+2025-02-26,Americano,5.0,3,,lstm_direct
+2025-02-26,Americano with Milk,3.0,3,,lstm_direct
+2025-02-26,Cappuccino,1.0,3,,lstm_direct
+2025-02-26,Cocoa,1.0,3,,lstm_direct
+2025-02-26,Cortado,1.0,3,,lstm_direct
+2025-02-26,Espresso,0.0,3,,lstm_direct
+2025-02-26,Hot Chocolate,3.0,3,,lstm_direct
+2025-02-26,Latte,4.0,3,,lstm_direct
+2025-02-27,Americano,5.0,4,,lstm_direct
+2025-02-27,Americano with Milk,1.0,4,,lstm_direct
+2025-02-27,Cappuccino,4.0,4,,lstm_direct
+2025-02-27,Cocoa,4.0,4,,lstm_direct
+2025-02-27,Cortado,0.0,4,,lstm_direct
+2025-02-27,Espresso,1.0,4,,lstm_direct
+2025-02-27,Hot Chocolate,0.0,4,,lstm_direct
+2025-02-27,Latte,4.0,4,,lstm_direct
+2025-02-28,Americano,7.0,5,,lstm_direct
+2025-02-28,Americano with Milk,4.0,5,,lstm_direct
+2025-02-28,Cappuccino,1.0,5,,lstm_direct
+2025-02-28,Cocoa,1.0,5,,lstm_direct
+2025-02-28,Cortado,0.0,5,,lstm_direct
+2025-02-28,Espresso,1.0,5,,lstm_direct
+2025-02-28,Hot Chocolate,0.0,5,,lstm_direct
+2025-02-28,Latte,3.0,5,,lstm_direct
+2025-03-01,Americano,4.0,6,,lstm_direct
+2025-03-01,Americano with Milk,1.0,6,,lstm_direct
+2025-03-01,Cappuccino,2.0,6,,lstm_direct
+2025-03-01,Cocoa,0.0,6,,lstm_direct
+2025-03-01,Cortado,0.0,6,,lstm_direct
+2025-03-01,Espresso,0.0,6,,lstm_direct
+2025-03-01,Hot Chocolate,0.0,6,,lstm_direct
+2025-03-01,Latte,1.0,6,,lstm_direct
+2025-03-02,Americano,2.0,7,,lstm_direct
+2025-03-02,Americano with Milk,2.0,7,,lstm_direct
+2025-03-02,Cappuccino,0.0,7,,lstm_direct
+2025-03-02,Cocoa,1.0,7,,lstm_direct
+2025-03-02,Cortado,0.0,7,,lstm_direct
+2025-03-02,Espresso,0.0,7,,lstm_direct
+2025-03-02,Hot Chocolate,0.0,7,,lstm_direct
+2025-03-02,Latte,1.0,7,,lstm_direct
+2025-03-03,Americano,4.0,1,,lstm_direct
+2025-03-03,Americano with Milk,2.0,1,,lstm_direct
+2025-03-03,Cappuccino,4.0,1,,lstm_direct
+2025-03-03,Cocoa,2.0,1,,lstm_direct
+2025-03-03,Cortado,0.0,1,,lstm_direct
+2025-03-03,Espresso,0.0,1,,lstm_direct
+2025-03-03,Hot Chocolate,5.0,1,,lstm_direct
+2025-03-03,Latte,5.0,1,,lstm_direct
+2025-03-04,Americano,9.0,2,,lstm_direct
+2025-03-04,Americano with Milk,2.0,2,,lstm_direct
+2025-03-04,Cappuccino,1.0,2,,lstm_direct
+2025-03-04,Cocoa,2.0,2,,lstm_direct
+2025-03-04,Cortado,0.0,2,,lstm_direct
+2025-03-04,Espresso,0.0,2,,lstm_direct
+2025-03-04,Hot Chocolate,0.0,2,,lstm_direct
+2025-03-04,Latte,2.0,2,,lstm_direct
+2025-03-05,Americano,6.0,3,,lstm_direct
+2025-03-05,Americano with Milk,3.0,3,,lstm_direct
+2025-03-05,Cappuccino,3.0,3,,lstm_direct
+2025-03-05,Cocoa,2.0,3,,lstm_direct
+2025-03-05,Cortado,0.0,3,,lstm_direct
+2025-03-05,Espresso,1.0,3,,lstm_direct
+2025-03-05,Hot Chocolate,1.0,3,,lstm_direct
+2025-03-05,Latte,3.0,3,,lstm_direct
+2025-03-06,Americano,3.0,4,,lstm_direct
+2025-03-06,Americano with Milk,3.0,4,,lstm_direct
+2025-03-06,Cappuccino,2.0,4,,lstm_direct
+2025-03-06,Cocoa,1.0,4,,lstm_direct
+2025-03-06,Cortado,0.0,4,,lstm_direct
+2025-03-06,Espresso,1.0,4,,lstm_direct
+2025-03-06,Hot Chocolate,1.0,4,,lstm_direct
+2025-03-06,Latte,1.0,4,,lstm_direct
+2025-03-07,Americano,4.0,5,,lstm_direct
+2025-03-07,Americano with Milk,3.0,5,,lstm_direct
+2025-03-07,Cappuccino,2.0,5,,lstm_direct
+2025-03-07,Cocoa,2.0,5,,lstm_direct
+2025-03-07,Cortado,0.0,5,,lstm_direct
+2025-03-07,Espresso,0.0,5,,lstm_direct
+2025-03-07,Hot Chocolate,3.0,5,,lstm_direct
+2025-03-07,Latte,3.0,5,,lstm_direct
+2025-03-08,Americano,4.0,6,,lstm_direct
+2025-03-08,Americano with Milk,3.0,6,,lstm_direct
+2025-03-08,Cappuccino,1.0,6,,lstm_direct
+2025-03-08,Cocoa,0.0,6,,lstm_direct
+2025-03-08,Cortado,0.0,6,,lstm_direct
+2025-03-08,Espresso,0.0,6,,lstm_direct
+2025-03-08,Hot Chocolate,0.0,6,,lstm_direct
+2025-03-08,Latte,0.0,6,,lstm_direct
+2025-03-09,Americano,2.0,7,,lstm_direct
+2025-03-09,Americano with Milk,2.0,7,,lstm_direct
+2025-03-09,Cappuccino,2.0,7,,lstm_direct
+2025-03-09,Cocoa,1.0,7,,lstm_direct
+2025-03-09,Cortado,0.0,7,,lstm_direct
+2025-03-09,Espresso,1.0,7,,lstm_direct
+2025-03-09,Hot Chocolate,0.0,7,,lstm_direct
+2025-03-09,Latte,0.0,7,,lstm_direct
+2025-03-10,Americano,4.0,1,,lstm_direct
+2025-03-10,Americano with Milk,3.0,1,,lstm_direct
+2025-03-10,Cappuccino,1.0,1,,lstm_direct
+2025-03-10,Cocoa,1.0,1,,lstm_direct
+2025-03-10,Cortado,0.0,1,,lstm_direct
+2025-03-10,Espresso,0.0,1,,lstm_direct
+2025-03-10,Hot Chocolate,3.0,1,,lstm_direct
+2025-03-10,Latte,5.0,1,,lstm_direct
+2025-03-11,Americano,4.0,2,,lstm_direct
+2025-03-11,Americano with Milk,1.0,2,,lstm_direct
+2025-03-11,Cappuccino,2.0,2,,lstm_direct
+2025-03-11,Cocoa,2.0,2,,lstm_direct
+2025-03-11,Cortado,0.0,2,,lstm_direct
+2025-03-11,Espresso,0.0,2,,lstm_direct
+2025-03-11,Hot Chocolate,2.0,2,,lstm_direct
+2025-03-11,Latte,2.0,2,,lstm_direct
+2025-03-12,Americano,6.0,3,,lstm_direct
+2025-03-12,Americano with Milk,1.0,3,,lstm_direct
+2025-03-12,Cappuccino,3.0,3,,lstm_direct
+2025-03-12,Cocoa,2.0,3,,lstm_direct
+2025-03-12,Cortado,0.0,3,,lstm_direct
+2025-03-12,Espresso,0.0,3,,lstm_direct
+2025-03-12,Hot Chocolate,1.0,3,,lstm_direct
+2025-03-12,Latte,4.0,3,,lstm_direct
+2025-03-13,Americano,3.0,4,,lstm_direct
+2025-03-13,Americano with Milk,4.0,4,,lstm_direct
+2025-03-13,Cappuccino,2.0,4,,lstm_direct
+2025-03-13,Cocoa,0.0,4,,lstm_direct
+2025-03-13,Cortado,0.0,4,,lstm_direct
+2025-03-13,Espresso,1.0,4,,lstm_direct
+2025-03-13,Hot Chocolate,0.0,4,,lstm_direct
+2025-03-13,Latte,2.0,4,,lstm_direct
+2025-03-14,Americano,10.0,5,,lstm_direct
+2025-03-14,Americano with Milk,1.0,5,,lstm_direct
+2025-03-14,Cappuccino,1.0,5,,lstm_direct
+2025-03-14,Cocoa,3.0,5,,lstm_direct
+2025-03-14,Cortado,0.0,5,,lstm_direct
+2025-03-14,Espresso,1.0,5,,lstm_direct
+2025-03-14,Hot Chocolate,0.0,5,,lstm_direct
+2025-03-14,Latte,7.0,5,,lstm_direct
+2025-03-15,Americano,1.0,6,,lstm_direct
+2025-03-15,Americano with Milk,3.0,6,,lstm_direct
+2025-03-15,Cappuccino,3.0,6,,lstm_direct
+2025-03-15,Cocoa,0.0,6,,lstm_direct
+2025-03-15,Cortado,0.0,6,,lstm_direct
+2025-03-15,Espresso,0.0,6,,lstm_direct
+2025-03-15,Hot Chocolate,0.0,6,,lstm_direct
+2025-03-15,Latte,0.0,6,,lstm_direct
+2025-03-16,Americano,1.0,7,,lstm_direct
+2025-03-16,Americano with Milk,1.0,7,,lstm_direct
+2025-03-16,Cappuccino,1.0,7,,lstm_direct
+2025-03-16,Cocoa,0.0,7,,lstm_direct
+2025-03-16,Cortado,0.0,7,,lstm_direct
+2025-03-16,Espresso,0.0,7,,lstm_direct
+2025-03-16,Hot Chocolate,1.0,7,,lstm_direct
+2025-03-16,Latte,1.0,7,,lstm_direct
+2025-03-17,Americano,6.0,1,,lstm_direct
+2025-03-17,Americano with Milk,1.0,1,,lstm_direct
+2025-03-17,Cappuccino,1.0,1,,lstm_direct
+2025-03-17,Cocoa,2.0,1,,lstm_direct
+2025-03-17,Cortado,0.0,1,,lstm_direct
+2025-03-17,Espresso,0.0,1,,lstm_direct
+2025-03-17,Hot Chocolate,0.0,1,,lstm_direct
+2025-03-17,Latte,3.0,1,,lstm_direct
+2025-03-18,Americano,3.0,2,,lstm_direct
+2025-03-18,Americano with Milk,3.0,2,,lstm_direct
+2025-03-18,Cappuccino,0.0,2,,lstm_direct
+2025-03-18,Cocoa,4.0,2,,lstm_direct
+2025-03-18,Cortado,0.0,2,,lstm_direct
+2025-03-18,Espresso,1.0,2,,lstm_direct
+2025-03-18,Hot Chocolate,2.0,2,,lstm_direct
+2025-03-18,Latte,4.0,2,,lstm_direct
+2025-03-19,Americano,8.0,3,,lstm_direct
+2025-03-19,Americano with Milk,2.0,3,,lstm_direct
+2025-03-19,Cappuccino,3.0,3,,lstm_direct
+2025-03-19,Cocoa,1.0,3,,lstm_direct
+2025-03-19,Cortado,1.0,3,,lstm_direct
+2025-03-19,Espresso,2.0,3,,lstm_direct
+2025-03-19,Hot Chocolate,1.0,3,,lstm_direct
+2025-03-19,Latte,3.0,3,,lstm_direct
+2025-03-20,Americano,8.0,4,,lstm_direct
+2025-03-20,Americano with Milk,3.0,4,,lstm_direct
+2025-03-20,Cappuccino,4.0,4,,lstm_direct
+2025-03-20,Cocoa,1.0,4,,lstm_direct
+2025-03-20,Cortado,1.0,4,,lstm_direct
+2025-03-20,Espresso,1.0,4,,lstm_direct
+2025-03-20,Hot Chocolate,1.0,4,,lstm_direct
+2025-03-20,Latte,1.0,4,,lstm_direct
+2025-03-21,Americano,7.0,5,,lstm_direct
+2025-03-21,Americano with Milk,2.0,5,,lstm_direct
+2025-03-21,Cappuccino,4.0,5,,lstm_direct
+2025-03-21,Cocoa,0.0,5,,lstm_direct
+2025-03-21,Cortado,0.0,5,,lstm_direct
+2025-03-21,Espresso,0.0,5,,lstm_direct
+2025-03-21,Hot Chocolate,1.0,5,,lstm_direct
+2025-03-21,Latte,6.0,5,,lstm_direct
+2025-03-22,Americano,2.0,6,,lstm_direct
+2025-03-22,Americano with Milk,6.0,6,,lstm_direct
+2025-03-22,Cappuccino,0.0,6,,lstm_direct
+2025-03-22,Cocoa,1.0,6,,lstm_direct
+2025-03-22,Cortado,0.0,6,,lstm_direct
+2025-03-22,Espresso,1.0,6,,lstm_direct
+2025-03-22,Hot Chocolate,1.0,6,,lstm_direct
+2025-03-22,Latte,1.0,6,,lstm_direct
+2025-03-23,Americano,1.0,7,,lstm_direct
+2025-03-23,Americano with Milk,0.0,7,,lstm_direct
+2025-03-23,Cappuccino,1.0,7,,lstm_direct
+2025-03-23,Cocoa,2.0,7,,lstm_direct
+2025-03-23,Cortado,0.0,7,,lstm_direct
+2025-03-23,Espresso,0.0,7,,lstm_direct
+2025-03-23,Hot Chocolate,0.0,7,,lstm_direct
+2025-03-23,Latte,2.0,7,,lstm_direct
