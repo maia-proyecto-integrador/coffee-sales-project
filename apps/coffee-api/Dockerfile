@@ -26,7 +26,7 @@ COPY model-pkg/*.whl /tmp/
 RUN pip install /tmp/*.whl
 
 # Copiar el código de la aplicación
-COPY . /opt/coffee-api/
+COPY ./ /opt/coffee-api/
 
 # Hacer el directorio de trabajo ejecutable 
 RUN chmod +x /opt/coffee-api/run.sh
