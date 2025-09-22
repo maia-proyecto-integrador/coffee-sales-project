@@ -1,7 +1,5 @@
-import json
 from typing import Any
 
-import numpy as np
 import pandas as pd
 from fastapi import APIRouter, HTTPException
 from fastapi.encoders import jsonable_encoder
@@ -29,20 +27,27 @@ def health() -> dict:
 
 # Ruta para realizar las predicciones
 @api_router.post("/predict", response_model=schemas.PredictionResults, status_code=200)
-async def predict(input_data: schemas.MultipleDataInputs) -> Any:
+async def predict(input_data: schemas.ForecastInputs) -> Any:
     """
-    Prediccion usando el modelo de coffee sales prediction
+    Prediccion de ventas de café usando modelo SARIMAX
     """
 
-    input_df = pd.DataFrame(jsonable_encoder(input_data.inputs))
+    logger.info(f"Making prediction with horizon: {input_data.horizon}")
+    
+    # Convertir datos exógenos a DataFrame si se proporcionan
+    exog_data = None
+    if input_data.exog_data:
+        exog_data = pd.DataFrame(jsonable_encoder(input_data.exog_data))
+        logger.info(f"Exogenous data provided: {exog_data.shape}")
 
-    logger.info(f"Making prediction on inputs: {input_data.inputs}")
-    results = make_prediction(input_data=input_df.replace({np.nan: None}))
+    # Hacer predicción
+    results = make_prediction(horizon=input_data.horizon, exog_data=exog_data)
 
-    if results["errors"] is not None:
-        logger.warning(f"Prediction validation error: {results.get('errors')}")
-        raise HTTPException(status_code=400, detail=json.loads(results["errors"]))
+    # Verificar errores
+    if "error" in results:
+        logger.warning(f"Prediction error: {results.get('error')}")
+        raise HTTPException(status_code=400, detail=results["error"])
 
-    logger.info(f"Prediction results: {results.get('predictions')}")
+    logger.info(f"Prediction results: {len(results.get('predictions', []))} predictions generated")
 
     return results
