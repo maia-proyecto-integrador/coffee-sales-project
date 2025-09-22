@@ -6,30 +6,31 @@ data_file: coffee_ml_features.csv
 
 # Variables
 # Objetivo
-target: Attrition_Flag
+target: transactions
 
 features:
-  - Customer_Age
-  - Total_Amt_Chng_Q4_Q1
-  - Total_Relationship_Count
-  - Total_Revolving_Bal
-  - Total_Ct_Chng_Q4_Q1
-  - Total_Trans_Ct
-  - Total_Trans_Amt
-  - Contacts_Count_12_mon
+  - revenue
+  - avg_price
+  - first_sale_hour
+  - last_sale_hour
+  - avg_sale_hour
+  - year
+  - month
+  - day
+  - dayofweek
+  - quarter
+  - week_of_year
+  - is_weekend
+  - is_month_start
+  - is_month_end
 
 temp_features:
- - Gender
- - Dependent_count
- - Education_Level
- - Marital_Status
- - Income_Category
- - Card_Category
- - Months_on_book
- - Credit_Limit
- - Avg_Open_To_Buy
- - Avg_Utilization_Ratio
- - Months_Inactive_12_mon
+  - wx_temperature_2m
+  - wx_precipitation
+  - wx_cloudcover
+  - is_holiday
+  - is_holiday_prev
+  - is_holiday_next
 
 # pipelines
 pipeline_name: modelo-coffee-sales-prediction
@@ -48,11 +49,13 @@ max_depth: 19
 
 # variables a mapear
 qual_vars:
-  - Attrition_Flag
+  - transactions
 
 # 
 categorical_vars:
-  - Attrition_Flag
+  - is_weekend
+  - is_month_start
+  - is_month_end
 
 # mapeo de variables
 qual_mappings:

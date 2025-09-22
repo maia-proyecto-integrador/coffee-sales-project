@@ -1,11 +1,13 @@
 include *.txt
 include *.md
 include *.pkl
+include *.joblib
 recursive-include ./model/*
 
-include model/datasets/bankchurn_train.csv
-include model/datasets/bankchurn_test.csv
+include model/datasets/coffee_ml_features.csv
+include model/datasets/index_1.csv
 include model/trained/*.pkl
+include model/trained/*.joblib
 include model/VERSION
 include model/config.yml
 
