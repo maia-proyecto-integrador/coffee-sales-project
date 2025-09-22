@@ -1,0 +1,10 @@
+{
+  "best_model": {
+    "name": "sarimax",
+    "artifact": "results/models/sarimax.joblib",
+    "metric": "sMAPE",
+    "score": 98.71666147890423,
+    "horizon": 7,
+    "trained_at": "20250921_193610"
+  }
+}
