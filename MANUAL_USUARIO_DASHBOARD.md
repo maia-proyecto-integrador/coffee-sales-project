@@ -110,13 +110,12 @@ El panel lateral izquierdo contiene todos los filtros para personalizar tu anál
   - Selecciona múltiples días manteniendo Ctrl/Cmd
   - Útil para analizar patrones de fin de semana vs días laborables
 
-### 4. 🕒 **Hora del día (promedio)**
-- **Función**: Filtra por rango horario basado en la hora promedio de ventas del día
-- **Control**: Deslizador de rango numérico (6-22 horas)
+### 4. 🕒 **Hora del día**
+- **Función**: Filtra por rango horario
+- **Control**: Deslizador de rango numérico
 - **Uso**: 
   - Ajusta para analizar horarios específicos (ej: 7-10 AM para desayuno)
-  - Útil para identificar horas pico de actividad
-  - Basado en `avg_sale_hour` de los datos históricos
+  - Útil para identificar horas pico
 
 ### 💡 **Consejos de uso de filtros:**
 - Los filtros se aplican **automáticamente** al cambiarlos
