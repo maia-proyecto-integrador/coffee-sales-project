@@ -139,11 +139,17 @@ df = dd.read_csv(
 df["date"] = dd.to_datetime(df["date"], errors="coerce")
 df = df.dropna(subset=["date"])
 
-# Crear datetime para compatibilidad (asumiendo hora 12:00 para datos diarios)
-df["datetime"] = df["date"] + pd.Timedelta(hours=12)
+# Crear datetime para compatibilidad usando la hora promedio de ventas
+# Usar avg_sale_hour si está disponible, sino usar 12:00 como fallback
+df["hour"] = df["avg_sale_hour"].fillna(12.0)
 
-# Extraer la hora (será 12 para todos los registros diarios)
-df["hour"] = df["datetime"].dt.hour
+# Crear datetime usando la hora promedio de ventas
+# Convertir a pandas primero para evitar problemas con dask
+df_computed = df.compute()
+df_computed["datetime"] = df_computed["date"] + pd.to_timedelta(df_computed["hour"], unit='hours')
+
+# Convertir de vuelta a dask
+df = dd.from_pandas(df_computed, npartitions=4)
 
 # Usar revenue como money (el dataset de features usa 'revenue' en lugar de 'money')
 df["money"] = df["revenue"]
@@ -219,16 +225,18 @@ dow_filter = pn.widgets.MultiChoice(
 )
 
 # Hora del día
+# Usar rango realista de horas de operación (6 AM a 22 PM)
+hour_min = max(6, int(df["hour"].min().compute()))
+hour_max = min(22, int(df["hour"].max().compute()))
+
 hour_filter = pn.widgets.IntRangeSlider(
-    name="🕒 Hora del día",
-    start=int(df["hour"].min().compute()),
-    end=int(df["hour"].max().compute()),
-    value=(
-        int(df["hour"].min().compute()),
-        int(df["hour"].max().compute()),
-    ),
+    name="🕒 Hora del día (promedio)",
+    start=hour_min,
+    end=hour_max,
+    value=(hour_min, hour_max),
     step=1,
     width=240,
+    format="0[.]0",  # Mostrar decimales si es necesario
 )
 
 # Agrupar en Sidebar
