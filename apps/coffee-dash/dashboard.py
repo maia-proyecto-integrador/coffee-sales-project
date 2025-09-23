@@ -228,7 +228,6 @@ dow_filter = pn.widgets.MultiChoice(
 # Usar rango realista de horas de operación (6 AM a 22 PM)
 hour_min = max(6, int(df["hour"].min().compute()))
 hour_max = min(22, int(df["hour"].max().compute()))
-
 hour_filter = pn.widgets.IntRangeSlider(
     name="🕒 Hora del día (promedio)",
     start=hour_min,
