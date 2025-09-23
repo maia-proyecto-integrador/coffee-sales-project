@@ -1,5 +1,5 @@
 [core]
-    remote = sharedstore
+    remote = dagshub
 [cache]
     dir = D:\dvc-cache
 ['remote "localstore_d"']

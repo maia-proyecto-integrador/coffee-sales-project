@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/raortega/Documents/learning/maia/proyecto_desarrollo_soluciones/proyecto_curso/coffee-sales-project/apps/coffee-model/results/mlruns/681908620861412316/3dcb3e1fcca64e0b85bfee2ff4198e3c/artifacts
+end_time: 1758502080975
+entry_point_name: ''
+experiment_id: '681908620861412316'
+lifecycle_stage: active
+run_id: 3dcb3e1fcca64e0b85bfee2ff4198e3c
+run_name: sarimax
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1758502080841
+status: 3
+tags: []
+user_id: raortega

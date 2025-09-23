@@ -1,0 +1,63 @@
+# Nombre del paquete
+package_name: modelo-coffee-sales-prediction
+
+# Archivos de datos
+data_file: coffee_ml_features.csv
+
+# Variables
+# Objetivo
+target: transactions
+
+features:
+  - revenue
+  - avg_price
+  - first_sale_hour
+  - last_sale_hour
+  - avg_sale_hour
+  - year
+  - month
+  - day
+  - dayofweek
+  - quarter
+  - week_of_year
+  - is_weekend
+  - is_month_start
+  - is_month_end
+
+temp_features:
+  - wx_temperature_2m
+  - wx_precipitation
+  - wx_cloudcover
+  - is_holiday
+  - is_holiday_prev
+  - is_holiday_next
+
+# pipelines
+pipeline_name: modelo-coffee-sales-prediction
+pipeline_save_file: modelo-coffee-sales-prediction-output
+
+# fracción del conjunto de prueba
+test_size: 0.25
+
+# semilla
+random_state: 50
+
+# hiperparámetros del modelo 
+n_estimators: 850
+
+max_depth: 19
+
+# variables a mapear
+qual_vars:
+  - transactions
+
+# 
+categorical_vars:
+  - is_weekend
+  - is_month_start
+  - is_month_end
+
+# mapeo de variables
+qual_mappings:
+  Attrited Customer: 1
+  Existing Customer: 0
