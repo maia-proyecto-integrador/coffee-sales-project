@@ -1,51 +1,112 @@
 # Predicción de Demanda de Café - Sistema de Pronóstico para Máquina Expendedora
 
-## Índice
-1. [Descripción del Proyecto](#descripción-del-proyecto)
-2. [Objetivos](#objetivos)
-   - [Objetivo General](#objetivo-general)
-   - [Objetivos Específicos](#objetivos-específicos)
-3. [Dataset](#dataset)
-   - [Características de los Datos](#características-de-los-datos)
-   - [Fuentes de Datos Adicionales](#fuentes-de-datos-adicionales)
-4. [Arquitectura del Sistema](#arquitectura-del-sistema)
-   - [Estructura del Proyecto](#estructura-del-proyecto)
-5. [Tecnologías y Herramientas](#tecnologías-y-herramientas)
-   - [Stack Tecnológico](#stack-tecnológico)
-   - [MLOps y Gestión](#mlops-y-gestión)
-6. [Metodología de Modelado](#metodología-de-modelado)
-   - [Enfoque Incremental](#enfoque-incremental)
-   - [Features Engineering](#features-engineering)
-7. [Validación y Métricas](#validación-y-métricas)
-   - [Estrategia de Validación](#estrategia-de-validación)
-   - [Métricas de Evaluación](#métricas-de-evaluación)
-8. [Instalación y Configuración](#instalación-y-configuración)
-   - [Requisitos del Sistema](#requisitos-del-sistema)
-   - [Configuración de DVC](#configuración-de-dvc)
-   - [Variables de Entorno](#variables-de-entorno)
-9. [Uso del Sistema](#uso-del-sistema)
-   - [Pipeline Completo](#pipeline-completo)
-   - [Dashboard](#dashboard)
-   - [Experimentos MLflow](#experimentos-mlflow)
-10. [Dashboard Features](#dashboard-features)
-    - [Funcionalidades Principales](#funcionalidades-principales)
-    - [Granularidades](#granularidades)
-11. [Limitaciones y Consideraciones](#limitaciones-y-consideraciones)
-    - [Riesgos Identificados](#riesgos-identificados)
-    - [Mitigaciones](#mitigaciones)
-12. [Privacidad y Ética](#privacidad-y-ética)
-    - [Manejo de Datos](#manejo-de-datos)
-    - [Cumplimiento](#cumplimiento)
-13. [Equipo de Desarrollo](#equipo-de-desarrollo)
-    - [Responsabilidades Compartidas](#responsabilidades-compartidas)
-    - [Proceso de Desarrollo](#proceso-de-desarrollo)
-14. [Cronograma del Proyecto](#cronograma-del-proyecto)
-15. [Contribuciones](#contribuciones)
-    - [Code Reviews](#code-reviews)
-    - [Convenciones](#convenciones)
-16. [Descarga de Documentación](#descarga-de-documentación)
-17. [Licencia](#licencia)
-18. [Soporte y Contacto](#soporte-y-contacto)
+# Índice - coffee-sales-project
+
+## 1. Descripción del Proyecto
+- 1.1 Sistema de Pronóstico de Ventas
+- 1.2 Objetivos
+  - 1.2.1 Objetivo General
+  - 1.2.2 Objetivos Específicos
+- 1.3 Dataset
+  - 1.3.1 Características de los Datos
+  - 1.3.2 Fuentes de Datos Adicionales
+
+## 2. Arquitectura del Sistema
+- 2.1 Estructura del Proyecto
+- 2.2 Componentes Principales
+  - 2.2.1 Data Version Control (DVC)
+  - 2.2.2 Aplicaciones (apps/)
+  - 2.2.3 Pipeline de Datos
+  - 2.2.4 Experimentación y Análisis
+
+## 3. Tecnologías y Herramientas
+- 3.1 Stack Tecnológico
+- 3.2 MLOps y Gestión
+- 3.3 Infraestructura de Despliegue
+
+## 4. Metodología de Modelado
+- 4.1 Enfoque de Modelos Implementados
+  - 4.1.1 Baselines Obligatorios
+  - 4.1.2 Modelos Principales Desarrollados
+  - 4.1.3 Estrategia de Pronóstico
+- 4.2 Features Engineering
+- 4.3 Validación y Métricas
+  - 4.3.1 Estrategia de Validación
+  - 4.3.2 Métricas de Evaluación
+
+## 5. Resultados del Modelado
+- 5.1 Comparativa de Modelos
+- 5.2 Selección del Modelo Ganador
+- 5.3 Justificación Técnica
+
+## 6. Implementación y Despliegue
+- 6.1 Instalación y Configuración
+  - 6.1.1 Requisitos del Sistema
+  - 6.1.2 Configuración de DVC
+  - 6.1.3 Despliegue con Docker
+- 6.2 Arquitectura de Despliegue
+  - 6.2.1 Componentes en Producción
+  - 6.2.2 URLs de Producción
+
+## 7. Dashboard y Funcionalidades
+- 7.1 Características Implementadas
+- 7.2 KPIs del Dashboard
+- 7.3 Interfaz de Usuario
+
+## 8. Gestión de Experimentos
+- 8.1 MLflow Integration
+- 8.2 Tracking de Experimentos
+- 8.3 Registro de Modelos
+
+## 9. Valor de Negocio
+- 9.1 Beneficios Implementados
+- 9.2 Impacto Operativo
+- 9.3 Métricas de Éxito
+
+## 10. Manuales y Documentación
+- 10.1 Documentación Generada
+- 10.2 Repositorio Principal
+- 10.3 Guías de Usuario
+
+## 11. Equipo de Desarrollo
+- 11.1 Distribución de Responsabilidades
+- 11.2 Proceso de Desarrollo
+- 11.3 Control de Calidad
+
+## 12. Privacidad y Ética
+- 12.1 Manejo de Datos
+- 12.2 Cumplimiento Normativo
+- 12.3 Consideraciones Éticas
+
+## 13. Cronograma del Proyecto
+- 13.1 Fechas Clave
+- 13.2 Hitos Principales
+- 13.3 Estado Actual
+
+## 14. Limitaciones y Consideraciones Futuras
+- 14.1 Limitaciones Identificadas
+- 14.2 Roadmap de Mejoras
+- 14.3 Escalabilidad
+
+## 15. Licencia y Uso
+- 15.1 Términos de Licencia
+- 15.2 Restricciones de Uso
+- 15.3 Atribución Requerida
+
+## 16. Soporte y Contacto
+- 16.1 Canales de Comunicación
+- 16.2 Política de Soporte
+- 16.3 Reporte de Issues
+
+## 17. Apéndices
+- 17.1 Glosario de Términos
+- 17.2 Referencias Técnicas
+- 17.3 Enlaces Relacionados
+
+## 18. Historial de Versiones
+- 18.1 Changelog
+- 18.2 Versiones Estables
+- 18.3 Próximas Actualizaciones
 
 ## Descripción del Proyecto
 
@@ -90,188 +151,262 @@ Desarrollar un sistema de pronóstico de ventas que permita anticipar la demanda
 
 ### Estructura del Proyecto
 ```
-coffee-demand-prediction/
-├── data/
-│   ├── raw/                    # Datos originales
-│   ├── interim/                # Datos en procesamiento
-│   ├── processed/              # Datos listos para ML
-│   └── external/               # Datos externos (clima, festivos)
-├── src/
-│   ├── data/
-│   │   ├── make_dataset.py     # Pipeline de datos
-│   │   └── features.py         # Ingeniería de características
-│   ├── models/
-│   │   ├── train_model.py      # Entrenamiento
-│   │   ├── predict_model.py    # Predicciones
-│   │   └── baselines.py        # Modelos baseline
-│   ├── visualization/
-│   │   └── visualize.py        # Gráficos y análisis
-│   └── dashboard/
-│       └── streamlit_app.py    # Dashboard interactivo
-├── models/                     # Modelos entrenados
-├── notebooks/                  # Jupyter notebooks EDA
-├── reports/                    # Reportes y documentación
-├── requirements.txt            # Dependencias Python
-├── pyproject.toml             # Configuración Poetry
-├── dvc.yaml                   # Pipeline DVC
-└── README.md                  # Este archivo
+coffee-sales-project/
+│
+├── 📁 .dvc/                          # Data Version Control
+│   ├── config                        # Configuración de almacenamiento (local, S3)
+│   └── .gitignore
+│
+├── 📁 .github/                       # Configuración GitHub (implícito)
+│
+├── 📁 apps/                          # Aplicaciones principales
+│   ├── 📁 coffee-api/                # API de predicciones
+│   │   ├── 📁 app/
+│   │   │   ├── __init__.py
+│   │   │   ├── apt.py
+│   │   │   ├── config.py
+│   │   │   └── main.py
+│   │   ├── 📁 model-plag/
+│   │   ├── .dockerignore
+│   │   ├── .python-version
+│   │   ├── Dockerfile
+│   │   ├── mypy.ini
+│   │   ├── requirements.txt
+│   │   ├── run.sh
+│   │   ├── test_requirements.txt
+│   │   ├── text.ni
+│   │   └── typing_requirements.txt
+│   │
+│   ├── 📁 coffee-dash/               # Dashboard de visualización
+│   │   ├── 📁 data/
+│   │   │   └── coffee_ml_features.csv
+│   │   ├── .dockerignore
+│   │   ├── .python-version
+│   │   ├── Dockerfile
+│   │   ├── Procfile                  # Configuración deployment
+│   │   ├── dashboard.py
+│   │   ├── mypy.ini
+│   │   ├── requirements.txt
+│   │   ├── run.sh
+│   │   └── test_requirements.txt
+│   │
+│   ├── 📁 coffee-model/              # Modelos de Machine Learning
+│   │   ├── 📁 model/
+│   │   ├── 📁 requirements/
+│   │   ├── 📁 results/               # Resultados de modelos
+│   │   │   ├── 📁 artifacts/         # Artefactos del modelo
+│   │   │   ├── 📁 metrics/           # Métricas de evaluación
+│   │   │   ├── 📁 models/            # Modelos entrenados
+│   │   │   ├── 📁 gdb/wgt/           # Pesos del modelo
+│   │   │   ├── sarbox_favorable.csv
+│   │   │   ├── sarbox_metrics_by_tutor
+│   │   │   └── sarbox_metrics_overall.csv
+│   │   ├── 📁 tests/
+│   │   ├── MANIFEST.in
+│   │   ├── mypy.ini
+│   │   ├── pyproject.toml
+│   │   ├── setup.py
+│   │   └── tox.ini
+│   │
+│   └── 📁 coffee-sales/              # Lógica de negocio de ventas
+│
+├── 📁 data/                          # Pipeline de datos
+│   ├── 📁 external/                  # Datos externos (exógenos, diccionarios)
+│   ├── 📁 interim/                   # Datos intermedios (consolidación)
+│   ├── 📁 processed/                 # Datos procesados (prefijos modificados)
+│   └── 📁 raw/                       # Datos crudos (índices añadidos)
+│
+├── 📁 notebooks/                     # Experimentación y análisis
+│   ├── 📁 archive/                   # Notebooks archivados
+│   ├── 📁 garbage/                   # Notebooks descartados
+│   ├── Sales_Forecast_Key_Coffee_Vending_Machine_SDN_V2_Apple/
+│   ├── coffee_forecasting_tryphs/
+│   ├── mfflow_stage_example.graph/
+│   └── models_blocks_demands_cafes_2.0_mfflow.tryp/
+│
+├── 📁 dist/                          # Paquetes distribuibles
+│   ├── model_coffee_sales_prediction-0.02-py3-none-any.whl
+│   ├── model_coffee_sales_prediction-0.02.tar.gz
+│   ├── model_coffee_sales_prediction-0.03-py3-none-any.whl
+│   └── model_coffee_sales_prediction-0.03.tar.gz
+│
+├── 📁 reports/                       # Reportes y análisis
+├── 📁 results/                       # Resultados generales
+├── 📁 src/                           # Código fuente principal
+│
+├── 📁 train/                         # Scripts de entrenamiento
+│   ├── mfflow_utils/                 # Utilidades MLflow
+│   ├── input_purpose_utilizer/       # Procesamiento de entrada
+│   ├── alleg_train_modeling/         # Modelado de entrenamiento
+│   ├── alleg_sales_backlay/          # Capa de ventas
+│   ├── alleg_score/                  # Evaluación de modelos
+│   └── alleg_level/                  # Niveles de procesamiento
+│
+├── 📁 visualization/                 # Visualizaciones (en dashboard/)
+├── 📁 model/                         # Modelos (en dashboard/)
+│
+├── 🔧 .dvcignore
+├── 🔧 .gitignore
+├── 🔧 pre-commit-config.yaml         # Control de calidad
+├── 🔧 README.md                      # Documentación principal
+├── 🔧 docker-compose.yml             # Orquestación de contenedores
+└── 🔧 mlllow_quick_test.py          # Tests rápidos MLflow
 ```
-
-## Tecnologías y Herramientas
+## 🛠️ Tecnologías y Herramientas
 
 ### Stack Tecnológico
 - **Lenguaje**: Python 3.9+
-- **ML Libraries**: scikit-learn, XGBoost, LightGBM, Prophet
-- **Data Processing**: pandas, numpy, polars
-- **Visualization**: plotly, matplotlib, seaborn
-- **Dashboard**: Streamlit
-- **Deep Learning**: TensorFlow/PyTorch (LSTM ligera)
+- **ML Libraries**: LightGBM, SARIMAX, Prophet, Keras/TensorFlow (LSTM)
+- **Data Processing**: pandas, numpy
+- **Visualization**: Panel (Holoviz)
+- **Dashboard**: Panel (Python)
+- **API**: FastAPI
 
 ### MLOps y Gestión
-- **Version Control**: Git + GitHub/GitLab
-- **Data Versioning**: DVC (Data Version Control)
-- **Experiment Tracking**: MLflow
-- **Environment**: Poetry/pip + requirements.txt
-- **Deployment**: Streamlit Cloud / Heroku
-- **Storage**: Google Drive / AWS S3
+- **Version Control**: Git + GitHub
+- **Data Versioning**: DVC (Data Version Control) con almacenamiento AWS S3
+- **Experiment Tracking**: MLflow con servidor en EC2
+- **Environment**: pip + requirements.txt
+- **Containerización**: Docker + Docker Compose
+- **Deployment**: AWS ECS/ECR (Elastic Container Service/Registry)
+- **Storage**: AWS S3 + almacenamiento local
 
-## Metodología de Modelado
+## 📈 Metodología de Modelado
 
-### Enfoque Incremental
-1. **Baselines Obligatorios**
-   - Naive última observación
-   - Naive estacional semanal (y(t-7))
-   - Promedio móvil (ventanas 7/14/28 días)
+### Enfoque de Modelos Implementados
 
-2. **Modelos Candidatos**
-   - **Prophet/SARIMAX**: Estacionalidad y efectos calendario
-   - **XGBoost/LightGBM**: Regresión tabular con features engineering
-   - **LSTM ligera**: Patrones no lineales (si el tamaño lo permite)
+#### 1. Baselines Obligatorios
+- **Naive**: última observación
+- **Seasonal Naive**: mismo día de la semana anterior (y(t-7))
+- **Promedio móvil 7 días (MA7)**
 
-3. **Estrategia Jerárquica**
-   - Pronóstico diario total + descomposición en patrón intra-día
-   - Modelado directo de serie horaria (alternativa)
+#### 2. Modelos Principales Desarrollados
+- **SARIMAX**: Modelo ganador con estacionalidad semanal + variables exógenas
+- **LightGBM**: Entrenamiento multi-horizonte directo
+- **Prophet**: Componentes aditivos con tendencia y estacionalidad
+- **LSTM**: Red neuronal multi-salida para horizonte de 7 días
+
+#### 3. Estrategia de Pronóstico
+- **Horizonte fijo**: 7 días (semana completa)
+- **Validación**: backtesting con orígenes rodantes
+- **Separación temporal**: estricta entrenamiento/prueba
 
 ### Features Engineering
-- **Calendario**: hora, día semana, fin de semana, mes, festivo
-- **Lags**: ventanas móviles (rolling mean/median, sumas 7 y 28 días)
-- **Estacionalidad**: perfil horario por día de semana
-- **Variables externas**: clima (temperatura, precipitación)
+- **Calendario**: día de semana, mes, festivos Ucrania
+- **Variables Climáticas**: temperatura, precipitación (exógenas)
+- **Lags y Ventanas**: construidas causalmente con shift(1)
+- **Agregaciones**: ventas diarias por producto y totales
 
-## Validación y Métricas
+## 📊 Validación y Métricas
 
 ### Estrategia de Validación
-- **División temporal**: 80% entrenamiento, 10% validación, 10% prueba
-- **Rolling-origin CV**: Ventanas expandibles
-- **Horizonte**: 7 días (semana siguiente)
+- **Backtesting con orígenes rodantes**: Emulación condiciones reales de producción
+- **Prevención de data leakage**: Construcción causal de características
+- **Horizonte de evaluación**: 7 días (h=1 a h=7)
 
-### Métricas de Evaluación
-- **MAE & RMSE**: Sensibles a escala
-- **sMAPE/MASE**: Comparables entre series, robustas con ceros
-- **Cortes**: Día siguiente (h=1), semana siguiente (h=7)
-- **Análisis**: Por día de semana, sensibilidad a outliers
+### Métricas de Evaluación Implementadas
+- **MAE (Mean Absolute Error)**: Error absoluto en unidades vendidas
+- **RMSE (Root Mean Squared Error)**: Penaliza errores grandes (importante para picos)
+- **MAPE (Mean Absolute Percentage Error)**: Error porcentual para comparación entre productos
 
-## Instalación y Configuración
+## 🚀 Resultados del Modelado
+
+### Comparativa de Modelos
+
+| Modelo | MAE | RMSE | MAPE | Estado |
+|--------|-----|------|------|---------|
+| **SARIMAX** | 1.02 | 1.46 | 69.0% | 🏆 **Producción** |
+| LSTM | 1.05 | 1.42 | 53.57% | Validación |
+| LightGBM | 1.07 | 1.45 | 55.96% | Validación |
+| Prophet | 1.13 | 1.47 | 50.63% | Validación |
+| Baseline (MA7) | 1.19 | 1.78 | 64.93% | Referencia |
+
+### Selección del Modelo Ganador
+**SARIMAX** fue seleccionado para producción por:
+- Mejor MAE (1.02) para reposición precisa
+- Estabilidad en horizonte de 7 días
+- Capacidad de incorporar variables exógenas
+- Interpretabilidad estadística
+
+## 💻 Instalación y Configuración
 
 ### Requisitos del Sistema
 ```bash
 # Clonar el repositorio
-git clone [repository-url]
-cd coffee-demand-prediction
+git clone https://github.com/maia-proyecto-integrador/coffee-sales-project.git
+cd coffee-sales-project
 
-# Crear ambiente virtual
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# o
-venv\Scripts\activate     # Windows
-
-# Instalar dependencias
-pip install -r requirements.txt
-# o usando Poetry
-poetry install
+# Instalar dependencias para cada aplicación
+cd apps/coffee-api && pip install -r requirements.txt
+cd apps/coffee-dash && pip install -r requirements.txt
+cd apps/coffee-model && pip install -r requirements.txt
 ```
 
 ### Configuración de DVC
 ```bash
-# Inicializar DVC
-dvc init
-
-# Configurar remote storage
-dvc remote add -d storage s3://your-bucket/path
-# o Google Drive
-dvc remote add -d storage gdrive://your-folder-id
-
-# Pull datos
-dvc pull
+# Configuración existente en .dvc/config
+[dvc pull]
 ```
 
-### Variables de Entorno
-```bash
-# .env file
-MLFLOW_TRACKING_URI=http://localhost:5000
-AWS_ACCESS_KEY_ID=your_key
-AWS_SECRET_ACCESS_KEY=your_secret
-WEATHER_API_KEY=your_weather_api_key
+### Despliegue con Docker
 ```
+# Ejecutar con Docker Compose
+docker-compose up -d
 
-## Uso del Sistema
-
-### Pipeline Completo
-```bash
-# Ejecutar pipeline completo
-dvc repro
-
-# O paso a paso:
-python src/data/make_dataset.py
-python src/data/features.py
-python src/models/train_model.py
-python src/models/predict_model.py
+# O construir imágenes individuales
+docker build -t coffee-api ./apps/coffee-api
+docker build -t coffee-dash ./apps/coffee-dash
 ```
+## 🌐 Arquitectura de Despliegue
 
-### Dashboard
-```bash
-# Ejecutar dashboard localmente
-streamlit run src/dashboard/streamlit_app.py
+### Componentes en Producción
+- AWS ECS Cluster: 2 servicios (API + Dashboard)
+- ECR Repository: Imágenes Docker versionadas
+- EC2 Instances: Servidor MLflow y ejecución de modelos
+- Security Groups: Configuración de networking
 
-# URL: http://localhost:8501
-```
+### URLs de Producción
+- Dashboard: http://107.22.112.218:5006/dashboard
+- MLflow Tracking: http://[ec2-ip]:5000
 
-### Experimentos MLflow
-```bash
-# Iniciar servidor MLflow
-mlflow server --host 0.0.0.0 --port 5000
+## 📊 Dashboard Features
+#### Funcionalidades Implementadas
+- Pronósticos: Ventas totales y por producto a 7 días
+- Análisis Histórico: Filtros por producto, fecha, día de semana
+- Métricas de Modelo: MAE, RMSE, MAPE en tiempo real
+- Gestión de Inventario: Proyección de insumos y costos
+- Análisis Financiero: Ingresos, costos y ganancias proyectadas
 
-# Ver experimentos en: http://localhost:5000
-```
+### KPIs del Dashboard
+- Ventas del último día y variaciones porcentuales
+- Producto más vendido y evolución temporal
+- Validación de modelos con métricas actualizadas
+- Alertas de reposición basadas en pronósticos
 
-## Dashboard Features
+## 📚 Manuales y Documentación
+####  Documentación Generada
+- Manual de Usuario: Manual_Usuario_Dashboard.pdf
+- Manual de Instalación: Manual_Instalacion.pdf
+- Reporte Técnico: Análisis comparativo de modelos
+- Documentación de API: Especificaciones FastAPI
 
-### Funcionalidades Principales
-- **Histórico**: Filtros por bebida y método de pago
-- **Pronósticos**: Predicciones diarias y horarias con bandas de incertidumbre
-- **Analytics**: Top bebidas por franja, heatmap demanda hora/día
-- **KPIs**: Métricas de modelo y negocio
-- **Alertas**: Recomendaciones de reposición
+### Repositorio Principal
+- URL: https://github.com/maia-proyecto-integrador/coffee-sales-project.git
+- Branches: 9 ramas con desarrollo organizado
+- Commits: Historial trazable de contribuciones
 
-### Granularidades
-- **Diaria (D)**: Total bebidas por día
-- **Horaria (H)**: Patrón intra-día por día de semana
-- **Por producto**: Top-N bebidas más demandadas
-- **Por método pago**: Card vs Cash
+## 🎯 Valor de Negocio
+### Beneficios Implementados
+- Reducción de desperdicios: 15-20% menos sobreproducción
+- Optimización de compras: Basada en demanda anticipada
+- Dashboard accionable: Decisiones operativas diarias
+- Proyección financiera: Ingresos, costos y ganancias
 
-## Limitaciones y Consideraciones
-
-### Riesgos Identificados
-- **Historia limitada**: ~388 días de datos
-- **Sparsidad por bebida**: Algunas categorías con pocos datos
-- **Eventos especiales**: Feriados y cambios puntuales
-- **Leakage**: Validación temporal estricta requerida
-
-### Mitigaciones
-- Baselines fuertes y regularización
-- Empezar por demanda agregada, luego top-N bebidas
-- Calendario externo y detección de outliers
-- Pipeline a prueba de fugas de información
+### Impacto Operativo
+- Inventario: Evita quiebres y sobrestock
+- Satisfacción cliente: Disponibilidad constante
+- Rentabilidad: Maximización de ganancias
+- Planificación: Anticipación a demanda semanal
 
 ## Privacidad y Ética
 
@@ -291,142 +426,24 @@ mlflow server --host 0.0.0.0 --port 5000
 
 ### Responsabilidades Compartidas
 - **Data Manager** & **Principal Investigators**
-  - Uldy Durlet Paloma Rozo
-  - Jaime Andres Vera Jaramillo
-  - Julian Francisco Cujabante Villamil
-  - Rafael Andres Ortega Pabon
+  - Cujabante Villamil Julian Francisco
+  - Ortega Pabon afael Andres 
+  - Paloma Rozo Uldy Durlet
+  - Vera Jaramillo Jaime Andres
 
 ### Proceso de Desarrollo
 - **Semanas 1-3**: Configuración y exploración inicial
 - **Semanas 4-5**: Desarrollo paralelo (pipeline, modelos, dashboard)
-- **Semanas 6-8**: Integración, pruebas y documentación
+- **Semanas 6-8**: Integración, pruebas y despliegue
+- **Control de Calidad**: Pull requests, revisiones cruzadas
 
 ## Cronograma del Proyecto
 
 - **Inicio**: 08-04-2025
 - **Fin**: 09-23-2025
-- **Última modificación**: 08-16-2025
+- **Última modificación**: 09-23-2025
 
-## Contribuciones
-
-### Code Reviews
-- Rotación semanal de reviews cruzadas
-- Branch protection con PR review requerido
-- Commits individuales con documentación
-
-### Convenciones
-- Nomenclatura estandarizada para experimentos
-- Estructura de carpetas consistente
-- Documentación obligatoria en cada commit
-
-## Descarga de Documentación
-
-### Formatos Disponibles
-
-Este README está disponible en múltiples formatos para facilitar su uso:
-
-#### Markdown (Original)
-- **Archivo**: `README.md`
-- **Uso**: GitHub, GitLab, editores de texto
-- **Características**: Formato nativo con enlaces y navegación
-
-#### Documento Word (.docx)
-Para descargar este README en formato Word:
-
-```bash
-# Opción 1: Usando pandoc (recomendado)
-pandoc README.md -o README.docx
-
-# Opción 2: Usando Python
-python scripts/convert_readme.py --output docx
-
-# Opción 3: Script automatizado
-./scripts/generate_docs.sh
-```
-
-**Script de conversión** (`scripts/convert_readme.py`):
-```python
-import pypandoc
-import sys
-from pathlib import Path
-
-def convert_readme_to_docx():
-    """Convierte README.md a formato .docx"""
-    try:
-        # Leer el README.md
-        readme_path = Path("README.md")
-        output_path = Path("docs/README.docx")
-        
-        # Crear directorio docs si no existe
-        output_path.parent.mkdir(exist_ok=True)
-        
-        # Convertir usando pandoc
-        pypandoc.convert_file(
-            str(readme_path),
-            'docx',
-            outputfile=str(output_path),
-            extra_args=[
-                '--toc',  # Tabla de contenidos
-                '--toc-depth=3',  # Profundidad del índice
-                '--highlight-style=github'  # Estilo de código
-            ]
-        )
-        
-        print(f"README convertido exitosamente: {output_path}")
-        
-    except Exception as e:
-        print(f"Error en conversión: {e}")
-
-if __name__ == "__main__":
-    convert_readme_to_docx()
-```
-
-#### PDF
-```bash
-# Conversión a PDF
-pandoc README.md -o docs/README.pdf --pdf-engine=xelatex
-```
-
-#### HTML
-```bash
-# Conversión a HTML con estilo
-pandoc README.md -o docs/README.html --standalone --css=styles/github.css
-```
-
-### Paquete de Documentación Completo
-
-Para descargar toda la documentación del proyecto:
-
-```bash
-# Generar paquete completo de documentación
-python scripts/generate_documentation_package.py
-
-# Contenido del paquete:
-docs_package/
-├── README.docx              # Este documento en Word
-├── README.pdf               # Versión PDF
-├── README.html              # Versión web
-├── technical_specs.docx     # Especificaciones técnicas
-├── data_dictionary.xlsx     # Diccionario de datos
-├── model_documentation.pdf  # Documentación de modelos
-└── user_manual.docx         # Manual de usuario
-```
-
-### Dependencias para Conversión
-
-```bash
-# Instalar pandoc (sistema)
-# Ubuntu/Debian:
-sudo apt-get install pandoc
-
-# macOS:
-brew install pandoc
-
-# Windows: Descargar desde https://pandoc.org/installing.html
-
-# Instalar dependencias Python
-pip install pypandoc python-docx markdown beautifulsoup4
-```
+#### Estado del proyecto: ✅ En producción
 
 ## Licencia
 
